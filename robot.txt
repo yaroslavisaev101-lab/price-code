@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /?admin=true
+Sitemap: https://yaroslavisaev101-lab.github.io/price-code/sitemap.xml
