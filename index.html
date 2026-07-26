@@ -37,7 +37,7 @@
     <link rel="canonical" href="https://yaroslavisaev101-lab.github.io/price-code/" />
     
     <style>
-        /* ===== ВСЕ СТИЛИ ===== */
+        /* ===== ВСЕ СТИЛИ (полностью адаптивные) ===== */
         :root {
             --primary: #2b6cb0;
             --primary-dark: #1a4f7a;
@@ -758,48 +758,6 @@
             transform: scale(1.2);
         }
 
-        .review-form .captcha-row {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            margin-bottom: 10px;
-            flex-wrap: wrap;
-        }
-
-        .review-form .captcha-row .captcha-text {
-            background: #edf2f7;
-            padding: 6px 14px;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: clamp(1rem, 1.5vw, 1.2rem);
-            letter-spacing: 4px;
-            font-family: monospace;
-            color: var(--primary);
-            user-select: none;
-            flex-shrink: 0;
-        }
-
-        .review-form .captcha-row input {
-            flex: 1;
-            min-width: 100px;
-            margin-bottom: 0;
-        }
-
-        .review-form .captcha-row .captcha-refresh {
-            background: none;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 6px 12px;
-            cursor: pointer;
-            font-size: 1.2rem;
-            transition: var(--transition);
-            flex-shrink: 0;
-        }
-
-        .review-form .captcha-row .captcha-refresh:hover {
-            background: #edf2f7;
-        }
-
         /* ===== КОНТАКТЫ ===== */
         .contact-wrapper {
             display: grid;
@@ -1489,13 +1447,6 @@
             .features-grid {
                 grid-template-columns: 1fr 1fr;
             }
-            .review-form .captcha-row {
-                flex-wrap: wrap;
-            }
-            .review-form .captcha-row input {
-                min-width: 100px;
-                flex: 1;
-            }
             .pd-consent-wrapper .pd-checkbox-row {
                 flex-wrap: wrap;
             }
@@ -1674,6 +1625,7 @@
                 <h3>🛠️ Управление контентом</h3>
 
                 <h4>📝 Управление отзывами</h4>
+                <div id="adminReviewsStorageBox" style="margin-bottom:12px;"></div>
                 <div id="adminReviewsList"></div>
 
                 <h4>➕ Добавить пример</h4>
@@ -1713,14 +1665,10 @@
                 </div>
                 <input type="hidden" id="reviewStars" value="5" />
                 <textarea placeholder="Расскажите о вашем опыте..." id="reviewText" required></textarea>
-                <div class="captcha-row">
-                    <span class="captcha-text" id="captchaText">A7F2</span>
-                    <input type="text" placeholder="Введите код" id="captchaInput" required />
-                    <button type="button" class="captcha-refresh" id="captchaRefresh">🔄</button>
-                </div>
-                <button type="submit" class="btn btn-primary" style="width:100%;">Оставить отзыв</button>
+                <button type="submit" class="btn btn-primary" style="width:100%;" id="reviewSubmit">Оставить отзыв</button>
             </div>
 
+            <div id="reviewsStatus" style="text-align:center;color:var(--text-light);padding:12px;"></div>
             <div class="reviews-list" id="reviewsList"></div>
         </section>
 
@@ -1889,6 +1837,9 @@
                             <li>• Отправка ответов на ваши вопросы</li>
                         </ul>
                         <br />
+                        <p><strong>Срок хранения:</strong></p>
+                        <p>Данные хранятся до момента исполнения заявки и достижения целей обработки либо до отзыва согласия, но не дольше 3 лет.</p>
+                        <br />
                         <p><strong>Вы можете в любой момент:</strong></p>
                         <ul style="padding-left:20px;">
                             <li>• Отозвать своё согласие, написав на <strong>pricefixvaninl@gmail.com</strong></li>
@@ -1961,7 +1912,7 @@
                 if (!name || !message) { showToast('⚠️ Заполните имя и сообщение!', 'error'); return; }
                 if (!email && !phone) { showToast('⚠️ Укажите Email или Телефон!', 'error'); return; }
 
-                const FORMSPREE_URL = 'https://formspree.io/f/mlgqovva';
+                const FORMGRID_URL = 'https://formgrid.dev/api/f/8x6nx9bd';
 
                 // Формируем текст для файла (без упоминания моей почты)
                 const consentText = `
@@ -1995,19 +1946,20 @@
                 submitBtn.textContent = '⏳ Отправка...';
 
                 try {
+                    // FormGrid принимает данные как FormData (как в официальной документации)
+                    const formData = new FormData();
+                    formData.append('name', name);
+                    if (email) formData.append('email', email);
+                    formData.append('phone', phone || 'Не указан');
+                    formData.append('message', message + '\n\n--- СОГЛАСИЕ НА ПД ---\n' + consentText);
+
                     // Отправляем заявку на почту (с текстом согласия)
-                    const response = await fetch(FORMSPREE_URL, {
+                    const response = await fetch(FORMGRID_URL, {
                         method: 'POST',
                         headers: {
-                            'Content-Type': 'application/json',
                             'Accept': 'application/json'
                         },
-                        body: JSON.stringify({
-                            name: name,
-                            email: email,
-                            phone: phone,
-                            message: message + '\n\n--- СОГЛАСИЕ НА ПД ---\n' + consentText
-                        })
+                        body: formData
                     });
 
                     if (response.ok) {
@@ -2047,7 +1999,7 @@
             }
 
             // ==========================================================
-            // 3. ОСТАЛЬНАЯ ЛОГИКА (админка, отзывы, примеры и т.д.)
+            // 3. ОСТАЛЬНАЯ ЛОГИКА
             // ==========================================================
             const ADMIN_PASSWORD = 'admin123';
 
@@ -2071,8 +2023,8 @@
                     isAdmin = true;
                     adminLoginModal.classList.remove('active');
                     adminPanel.classList.add('active');
-                    renderAdminReviews();
                     renderAdminExamples();
+                    renderAdminReviews();
                     showToast('✅ Вход в админ-панель выполнен', 'success');
                 } else {
                     loginError.classList.add('show');
@@ -2214,63 +2166,6 @@
             modalOverlay.addEventListener('click', function(e) { if (e.target === modalOverlay) closeModal(); });
             document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
 
-            // ===== ОТЗЫВЫ =====
-            let savedReviews = JSON.parse(localStorage.getItem('reviews')) || [];
-
-            function renderReviews() {
-                const list = document.getElementById('reviewsList');
-                list.innerHTML = '';
-                if (savedReviews.length === 0) {
-                    list.innerHTML =
-                        '<div style="text-align:center;color:#a0aec0;padding:20px;">Пока нет отзывов. Будь первым! ✨</div>';
-                    return;
-                }
-                savedReviews.slice().reverse().forEach(function(review, index) {
-                    const div = document.createElement('div');
-                    div.className = 'review-item';
-                    const starsHtml = '★'.repeat(review.stars) + '☆'.repeat(5 - review.stars);
-                    div.innerHTML = `
-                        <div class="stars">${starsHtml}</div>
-                        <div class="review-text">"${review.text}"</div>
-                        <div class="review-author">${review.name}</div>
-                        <div class="review-date">${review.date}</div>
-                    `;
-                    list.appendChild(div);
-                });
-            }
-
-            function renderAdminReviews() {
-                const container = document.getElementById('adminReviewsList');
-                container.innerHTML = '';
-                if (savedReviews.length === 0) {
-                    container.innerHTML = '<div style="color:#a0aec0;padding:8px;">Нет отзывов</div>';
-                    return;
-                }
-                savedReviews.slice().reverse().forEach(function(review, index) {
-                    const div = document.createElement('div');
-                    div.style.cssText =
-                        'display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:#f7fafc;border-radius:8px;margin-bottom:6px;font-size:clamp(0.8rem,1vw,0.9rem);flex-wrap:wrap;gap:8px;';
-                    div.innerHTML = `
-                        <span style="flex:1;min-width:120px;"><strong>${review.name}</strong>: ${review.text.substring(0, 60)}${review.text.length > 60 ? '...' : ''}</span>
-                        <button class="btn btn-danger btn-sm" data-admin-review-index="${savedReviews.length - 1 - index}">🗑️</button>
-                    `;
-                    container.appendChild(div);
-                });
-
-                container.querySelectorAll('[data-admin-review-index]').forEach(function(btn) {
-                    btn.addEventListener('click', function() {
-                        const idx = parseInt(this.dataset.adminReviewIndex);
-                        if (confirm('Удалить этот отзыв?')) {
-                            savedReviews.splice(idx, 1);
-                            localStorage.setItem('reviews', JSON.stringify(savedReviews));
-                            renderReviews();
-                            renderAdminReviews();
-                            showToast('✅ Отзыв удалён', 'success');
-                        }
-                    });
-                });
-            }
-
             function renderAdminExamples() {
                 const container = document.getElementById('adminExamplesContainer');
                 container.innerHTML = '';
@@ -2399,6 +2294,219 @@
                 });
             });
 
+            // ===== ОТЗЫВЫ =====
+            // Сайт статический (GitHub Pages), поэтому для того, чтобы отзывы
+            // видели ВСЕ посетители (а не только автор в своём браузере),
+            // используется бесплатное публичное JSON-хранилище jsonblob.com.
+            //
+            // ⚙️ Как включить общие отзывы (один раз):
+            // 1) Откройте админку (?admin=true, пароль admin123) → раздел «Управление отзывами»
+            // 2) Нажмите «Создать хранилище отзывов автоматически»
+            //    Если браузер не даст автоматически определить ID (ограничение CORS),
+            //    в панели появится инструкция, как создать хранилище вручную за 30 секунд
+            //    на https://jsonblob.com и получить ID
+            // 3) Полученный ID впишите ниже вместо null — это сделает отзывы видимыми
+            //    для всех посетителей сайта постоянно.
+            const REVIEWS_BLOB_ID = null; // <-- сюда вписать ID после инициализации хранилища
+
+            const REVIEWS_API_BASE = 'https://jsonblob.com/api/jsonBlob';
+            let currentReviewsBlobId = REVIEWS_BLOB_ID || localStorage.getItem('reviewsBlobId') || null;
+            let reviewsCache = [];
+
+            function escapeHtml(str) {
+                const div = document.createElement('div');
+                div.textContent = str == null ? '' : String(str);
+                return div.innerHTML;
+            }
+
+            function getReviewsUrl() {
+                return currentReviewsBlobId ? `${REVIEWS_API_BASE}/${currentReviewsBlobId}` : null;
+            }
+
+            async function fetchReviews() {
+                const statusEl = document.getElementById('reviewsStatus');
+                if (!currentReviewsBlobId) {
+                    reviewsCache = [];
+                    if (statusEl) statusEl.textContent = '';
+                    renderReviews();
+                    return;
+                }
+                if (statusEl) statusEl.textContent = 'Загружаем отзывы...';
+                try {
+                    const res = await fetch(getReviewsUrl(), { headers: { 'Accept': 'application/json' } });
+                    if (res.ok) {
+                        const data = await res.json();
+                        reviewsCache = Array.isArray(data) ? data : [];
+                    } else {
+                        reviewsCache = [];
+                    }
+                } catch (err) {
+                    console.warn('Не удалось загрузить отзывы:', err);
+                    reviewsCache = [];
+                }
+                if (statusEl) statusEl.textContent = '';
+                renderReviews();
+                if (isAdmin) renderAdminReviews();
+            }
+
+            async function persistReviews() {
+                if (!currentReviewsBlobId) return false;
+                try {
+                    const res = await fetch(getReviewsUrl(), {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify(reviewsCache)
+                    });
+                    return res.ok;
+                } catch (err) {
+                    console.warn('Не удалось сохранить отзывы:', err);
+                    return false;
+                }
+            }
+
+            function renderReviews() {
+                const list = document.getElementById('reviewsList');
+                const statusEl = document.getElementById('reviewsStatus');
+                if (!list) return;
+                list.innerHTML = '';
+
+                if (!currentReviewsBlobId) {
+                    if (statusEl) statusEl.textContent = 'Отзывы скоро появятся 🙂';
+                    return;
+                }
+
+                if (reviewsCache.length === 0) {
+                    list.innerHTML =
+                        '<div style="text-align:center;color:#a0aec0;padding:20px;">Пока нет отзывов. Будь первым! ✨</div>';
+                    return;
+                }
+
+                reviewsCache.slice().reverse().forEach(function(review) {
+                    const div = document.createElement('div');
+                    div.className = 'review-item';
+                    const starsHtml = '★'.repeat(review.stars) + '☆'.repeat(5 - review.stars);
+                    div.innerHTML = `
+                        <div class="stars">${starsHtml}</div>
+                        <div class="review-text">"${escapeHtml(review.text)}"</div>
+                        <div class="review-author">${escapeHtml(review.name)}</div>
+                        <div class="review-date">${escapeHtml(review.date)}</div>
+                    `;
+                    list.appendChild(div);
+                });
+            }
+
+            function renderAdminReviews() {
+                const container = document.getElementById('adminReviewsList');
+                const storageBox = document.getElementById('adminReviewsStorageBox');
+                if (!container || !storageBox) return;
+
+                if (!currentReviewsBlobId) {
+                    storageBox.innerHTML = `
+                        <div style="background:#fffaf0;border:1px solid #fbd38d;border-radius:10px;padding:12px;font-size:0.85rem;color:#7b341e;line-height:1.6;">
+                            ⚠️ Общее хранилище отзывов ещё не подключено — отзывы пока сохраняются только у автора в браузере.<br>
+                            <button class="btn btn-primary btn-sm" id="initReviewsStorageBtn" style="margin-top:8px;">🔧 Создать хранилище отзывов автоматически</button>
+                            <div id="initReviewsManual" style="margin-top:10px;display:none;"></div>
+                        </div>
+                    `;
+                    document.getElementById('initReviewsStorageBtn').addEventListener('click', initReviewsStorage);
+                    container.innerHTML = '';
+                    return;
+                }
+
+                storageBox.innerHTML = `
+                    <div style="background:#f0fff4;border:1px solid #9ae6b4;border-radius:10px;padding:10px 12px;font-size:0.8rem;color:#276749;word-break:break-all;">
+                        ✅ Общее хранилище подключено. ID: <strong>${escapeHtml(currentReviewsBlobId)}</strong><br>
+                        <span style="font-weight:400;">Чтобы отзывы были видны всем посетителям навсегда, впишите этот ID в код сайта в строку <code>REVIEWS_BLOB_ID</code>.</span>
+                    </div>
+                `;
+
+                container.innerHTML = '';
+                if (reviewsCache.length === 0) {
+                    container.innerHTML = '<div style="color:#a0aec0;padding:8px;">Нет отзывов</div>';
+                    return;
+                }
+                reviewsCache.slice().reverse().forEach(function(review) {
+                    const div = document.createElement('div');
+                    div.style.cssText =
+                        'display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:#f7fafc;border-radius:8px;margin-bottom:6px;font-size:clamp(0.8rem,1vw,0.9rem);flex-wrap:wrap;gap:8px;';
+                    const shortText = review.text.length > 60 ? review.text.substring(0, 60) + '...' : review.text;
+                    div.innerHTML = `
+                        <span style="flex:1;min-width:120px;"><strong>${escapeHtml(review.name)}</strong>: ${escapeHtml(shortText)}</span>
+                        <button class="btn btn-danger btn-sm" data-review-id="${escapeHtml(review.id)}">🗑️</button>
+                    `;
+                    container.appendChild(div);
+                });
+
+                container.querySelectorAll('[data-review-id]').forEach(function(btn) {
+                    btn.addEventListener('click', async function() {
+                        const id = this.dataset.reviewId;
+                        if (!confirm('Удалить этот отзыв?')) return;
+                        this.disabled = true;
+                        const backup = reviewsCache.slice();
+                        reviewsCache = reviewsCache.filter(r => r.id !== id);
+                        const ok = await persistReviews();
+                        if (ok) {
+                            showToast('✅ Отзыв удалён', 'success');
+                        } else {
+                            reviewsCache = backup;
+                            showToast('⚠️ Не удалось удалить отзыв. Проверьте связь и попробуйте ещё раз.', 'error');
+                        }
+                        renderReviews();
+                        renderAdminReviews();
+                    });
+                });
+            }
+
+            async function initReviewsStorage() {
+                const btn = document.getElementById('initReviewsStorageBtn');
+                const manualBox = document.getElementById('initReviewsManual');
+                if (btn) { btn.disabled = true; btn.textContent = '⏳ Создание...'; }
+                try {
+                    const res = await fetch(REVIEWS_API_BASE, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify([])
+                    });
+                    const location = res.headers.get('Location') || '';
+                    const id = location.split('/').filter(Boolean).pop();
+
+                    if (res.ok && id) {
+                        currentReviewsBlobId = id;
+                        localStorage.setItem('reviewsBlobId', id);
+                        reviewsCache = [];
+                        showToast('✅ Хранилище создано! Скопируйте ID и впишите его в код.', 'success');
+                        renderAdminReviews();
+                        renderReviews();
+                        return;
+                    }
+                    throw new Error('ID не определён автоматически');
+                } catch (err) {
+                    // Браузер не даёт прочитать ID автоматически (ограничение CORS) —
+                    // показываем понятную инструкцию для ручного создания за 30 секунд
+                    if (manualBox) {
+                        manualBox.style.display = 'block';
+                        manualBox.innerHTML = `
+                            <div style="font-size:0.8rem;line-height:1.7;">
+                                Автоматически определить ID не удалось (браузер блокирует чтение адреса созданного файла). Сделайте это вручную — займёт 30 секунд:<br>
+                                1. Откройте <a href="https://jsonblob.com" target="_blank" style="color:var(--primary);text-decoration:underline;">jsonblob.com</a><br>
+                                2. Нажмите «+ New», вставьте в поле <code>[]</code> и нажмите «Save»<br>
+                                3. Скопируйте ID из адресной строки (часть после последнего /)<br>
+                                4. Пришлите этот ID мне в чат — я сразу впишу его в код сайта.<br>
+                                Либо впишите его сами вместо <code>null</code> в строке <code>REVIEWS_BLOB_ID</code> в файле сайта.
+                            </div>
+                        `;
+                    }
+                    showToast('⚠️ Автоматическое создание не удалось, см. инструкцию ниже', 'error');
+                }
+                if (btn) { btn.disabled = false; btn.textContent = '🔧 Создать хранилище отзывов автоматически'; }
+            }
+
             // ===== ЗВЁЗДЫ =====
             const stars = document.querySelectorAll('#starRating span');
             const starsInput = document.getElementById('reviewStars');
@@ -2432,69 +2540,60 @@
                 });
             });
 
-            // ===== КАПЧА =====
-            function generateCaptcha() {
-                const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-                let result = '';
-                for (let i = 0; i < 4; i++) result += chars.charAt(Math.floor(Math.random() * chars.length));
-                return result;
-            }
-
-            let currentCaptcha = generateCaptcha();
-            document.getElementById('captchaText').textContent = currentCaptcha;
-            document.getElementById('captchaRefresh').addEventListener('click', function() {
-                currentCaptcha = generateCaptcha();
-                document.getElementById('captchaText').textContent = currentCaptcha;
-                document.getElementById('captchaInput').value = '';
-            });
-
             // ===== ОТПРАВКА ОТЗЫВА =====
-            document.getElementById('reviewForm').addEventListener('submit', function(e) {
+            const reviewSubmitBtn = document.getElementById('reviewSubmit');
+
+            document.getElementById('reviewForm').addEventListener('submit', async function(e) {
                 e.preventDefault();
 
                 const name = document.getElementById('reviewName').value.trim();
-                const stars = parseInt(document.getElementById('reviewStars').value);
+                const starsValue = parseInt(document.getElementById('reviewStars').value);
                 const text = document.getElementById('reviewText').value.trim();
-                const captchaInput = document.getElementById('captchaInput').value.trim().toUpperCase();
 
                 if (!name || !text) { showToast('⚠️ Заполните все поля!', 'error'); return; }
-                if (captchaInput !== currentCaptcha) {
-                    showToast('⚠️ Неверный код!', 'error');
-                    document.getElementById('captchaInput').value = '';
-                    currentCaptcha = generateCaptcha();
-                    document.getElementById('captchaText').textContent = currentCaptcha;
+
+                if (!currentReviewsBlobId) {
+                    showToast('⚠️ Форма отзывов ещё настраивается, попробуйте чуть позже', 'error');
                     return;
                 }
 
                 const now = Date.now();
-                const recent = savedReviews.filter(r => r.name === name && (now - new Date(r.timestamp || 0)
-                    .getTime() < 300000));
+                const recent = reviewsCache.filter(r => r.name === name && (now - (r.timestamp || 0) < 300000));
                 if (recent.length >= 3) {
                     showToast('⚠️ Слишком много отзывов за 5 минут!', 'error');
                     return;
                 }
 
-                savedReviews.push({
+                reviewSubmitBtn.disabled = true;
+                reviewSubmitBtn.textContent = '⏳ Отправка...';
+
+                const newReview = {
+                    id: 'r' + now + Math.random().toString(36).slice(2, 8),
                     name,
-                    stars,
+                    stars: starsValue,
                     text,
-                    date: new Date().toLocaleDateString('ru-RU', { day: 'numeric', month: 'long',
-                        year: 'numeric' }),
+                    date: new Date().toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' }),
                     timestamp: now
-                });
-                localStorage.setItem('reviews', JSON.stringify(savedReviews));
-                renderReviews();
-                if (isAdmin) renderAdminReviews();
+                };
 
-                this.reset();
-                starsInput.value = 5;
-                stars.forEach(function(s) { const v = parseInt(s.dataset.value); if (v <= 5) { s.classList.add(
-                        'active');
-                        s.textContent = '★'; } });
-                currentCaptcha = generateCaptcha();
-                document.getElementById('captchaText').textContent = currentCaptcha;
+                const backup = reviewsCache.slice();
+                reviewsCache.push(newReview);
+                const ok = await persistReviews();
 
-                showToast('✅ Спасибо за отзыв!', 'success');
+                if (ok) {
+                    renderReviews();
+                    if (isAdmin) renderAdminReviews();
+                    this.reset();
+                    starsInput.value = 5;
+                    stars.forEach(function(s) { const v = parseInt(s.dataset.value); if (v <= 5) { s.classList.add('active'); s.textContent = '★'; } });
+                    showToast('✅ Спасибо за отзыв!', 'success');
+                } else {
+                    reviewsCache = backup;
+                    showToast('⚠️ Не удалось отправить отзыв. Проверьте связь и попробуйте снова.', 'error');
+                }
+
+                reviewSubmitBtn.disabled = false;
+                reviewSubmitBtn.textContent = 'Оставить отзыв';
             });
 
             // ===== TOAST =====
@@ -2512,13 +2611,14 @@
 
             // ===== ЗАПУСК =====
             renderExamples();
-            renderReviews();
+            fetchReviews();
 
             console.log('💻 ПрайсКод — полностью адаптивный сайт');
             console.log('🔐 Админка: добавьте ?admin=true в URL');
             console.log('🔑 Пароль: admin123');
             console.log('📧 Почта: pricefixvaninl@gmail.com');
-            console.log('📩 Заявки отправляются на почту через Formspree');
+            console.log('📩 Заявки отправляются на почту через FormGrid');
+            console.log('⭐ Отзывы: собственная форма + общее хранилище (jsonblob.com)');
             console.log('🔒 Согласие на ПД: появляется при отправке заявки');
 
             // Добавляем анимации для модалки ПД
