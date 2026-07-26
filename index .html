@@ -1,0 +1,2542 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    
+    <!-- ===== SEO ===== -->
+    <title>ПрайсКод — Разработка сайтов, цены, примеры работ</title>
+    <meta name="description" content="ПрайсКод — разработка сайтов под ключ. Поздравления от 200 ₽, сайты-визитки от 1 000 ₽, многостраничные сайты от 2 500 ₽. Примеры работ, реальные отзывы." />
+    <meta name="keywords" content="разработка сайтов, цены на сайты, создание сайтов, прайс на сайты, сайт визитка, поздравление с фото, веб-разработка" />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="ПрайсКод" />
+    
+    <meta property="og:title" content="ПрайсКод — Разработка сайтов, цены, примеры работ" />
+    <meta property="og:description" content="Разработка сайтов под ключ. Поздравления от 200 ₽, сайты от 1 000 ₽. Примеры работ и реальные отзывы." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://yaroslavisaev101-lab.github.io/price-code/" />
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "ПрайсКод",
+        "description": "Разработка сайтов под ключ. Прозрачные цены на создание сайтов, поздравлений и веб-приложений.",
+        "url": "https://yaroslavisaev101-lab.github.io/price-code/",
+        "telephone": "+79098649140",
+        "email": "pricefixvaninl@gmail.com",
+        "priceRange": "200₽ - 2500₽+",
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "RU"
+        }
+    }
+    </script>
+    
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+    <link rel="canonical" href="https://yaroslavisaev101-lab.github.io/price-code/" />
+    
+    <style>
+        /* ===== ВСЕ СТИЛИ ===== */
+        :root {
+            --primary: #2b6cb0;
+            --primary-dark: #1a4f7a;
+            --primary-light: #63b3ed;
+            --secondary: #e53e3e;
+            --accent: #f6ad55;
+            --bg: #f0f4f8;
+            --card-bg: #ffffff;
+            --text: #1a202c;
+            --text-muted: #4a5568;
+            --text-light: #a0aec0;
+            --border: #e2e8f0;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.1);
+            --radius: 16px;
+            --radius-lg: 24px;
+            --transition: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            --container: 1200px;
+            --gap: 24px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 0 16px;
+            width: 100%;
+        }
+
+        /* ===== НАВИГАЦИЯ ===== */
+        .navbar {
+            background: var(--card-bg);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 12px 0;
+            width: 100%;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            font-size: clamp(1.4rem, 4vw, 2rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .logo span {
+            font-weight: 300;
+            -webkit-text-fill-color: var(--text-light);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: clamp(4px, 1.5vw, 28px);
+            list-style: none;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .nav-link {
+            font-weight: 600;
+            padding: 6px clamp(10px, 1.5vw, 18px);
+            border-radius: 8px;
+            font-size: clamp(0.7rem, 1.2vw, 0.95rem);
+            transition: var(--transition);
+            cursor: pointer;
+            white-space: nowrap;
+            border: 1px solid transparent;
+            background: transparent;
+        }
+
+        .nav-link:hover {
+            background: #edf2f7;
+        }
+
+        .nav-link.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            box-shadow: 0 2px 12px rgba(43, 108, 176, 0.25);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            flex-shrink: 0;
+        }
+
+        .hamburger span {
+            width: 26px;
+            height: 3px;
+            background: #2d3748;
+            border-radius: 4px;
+            transition: var(--transition);
+            transform-origin: center;
+        }
+
+        .hamburger.open span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 6px);
+        }
+        .hamburger.open span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -6px);
+        }
+
+        /* ===== ВКЛАДКИ ===== */
+        .tab-content {
+            display: none;
+            animation: fadeUp 0.4s ease;
+            padding: clamp(20px, 4vw, 40px) 0 clamp(30px, 5vw, 60px);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== КНОПКИ ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(10px, 1.5vw, 14px) clamp(20px, 3vw, 32px);
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: clamp(0.85rem, 1.2vw, 1rem);
+            transition: var(--transition);
+            border: 2px solid transparent;
+            cursor: pointer;
+            text-align: center;
+            min-height: 44px;
+            min-width: 44px;
+            touch-action: manipulation;
+        }
+
+        .btn:active {
+            transform: scale(0.96);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(43, 108, 176, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-danger {
+            background: var(--secondary);
+            color: white;
+            border-color: var(--secondary);
+        }
+
+        .btn-danger:hover {
+            background: #c53030;
+        }
+
+        .btn-sm {
+            padding: 4px 12px;
+            font-size: 0.75rem;
+            min-height: 32px;
+            min-width: 32px;
+        }
+
+        .btn-success {
+            background: #38a169;
+            color: white;
+            border-color: #38a169;
+        }
+        .btn-success:hover {
+            background: #276749;
+        }
+
+        /* ===== ГЛАВНАЯ ===== */
+        .hero {
+            text-align: center;
+            padding: clamp(30px, 6vw, 60px) clamp(16px, 3vw, 40px);
+            background: linear-gradient(135deg, #1a202c, #2d3748);
+            border-radius: var(--radius-lg);
+            color: white;
+            position: relative;
+            min-height: clamp(280px, 50vh, 420px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 60%;
+            max-width: 500px;
+            aspect-ratio: 1/1;
+            background: radial-gradient(circle, rgba(43, 108, 176, 0.15), transparent 70%);
+            border-radius: 50%;
+            animation: heroGlow 8s ease-in-out infinite alternate;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 50%;
+            max-width: 400px;
+            aspect-ratio: 1/1;
+            background: radial-gradient(circle, rgba(229, 62, 62, 0.1), transparent 70%);
+            border-radius: 50%;
+            animation: heroGlow2 10s ease-in-out infinite alternate;
+        }
+
+        @keyframes heroGlow {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                transform: translate(-30px, 20px) scale(1.2);
+            }
+        }
+        @keyframes heroGlow2 {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                transform: translate(30px, -15px) scale(1.3);
+            }
+        }
+
+        .hero * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero .badge {
+            display: inline-block;
+            background: rgba(43, 108, 176, 0.2);
+            border: 1px solid rgba(43, 108, 176, 0.3);
+            padding: 4px 16px;
+            border-radius: 30px;
+            font-size: clamp(0.7rem, 1vw, 0.85rem);
+            color: var(--primary-light);
+            margin-bottom: clamp(8px, 2vw, 16px);
+            animation: fadeInDown 0.6s ease;
+        }
+
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-16px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(1.8rem, 6vw, 3.4rem);
+            font-weight: 800;
+            margin-bottom: clamp(8px, 2vw, 16px);
+            line-height: 1.15;
+        }
+
+        .hero h1 span {
+            color: var(--primary-light);
+        }
+
+        .hero p {
+            font-size: clamp(0.95rem, 1.5vw, 1.2rem);
+            max-width: 600px;
+            margin: 0 auto clamp(16px, 3vw, 30px);
+            color: #cbd5e0;
+            padding: 0 8px;
+        }
+
+        .hero .btn-group {
+            display: flex;
+            gap: clamp(10px, 2vw, 16px);
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .hero .btn-hero {
+            padding: clamp(10px, 1.5vw, 14px) clamp(20px, 3vw, 36px);
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: clamp(0.85rem, 1.2vw, 1rem);
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            flex: 1;
+            min-width: 140px;
+            min-height: 48px;
+            touch-action: manipulation;
+        }
+
+        .hero .btn-hero.primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 20px rgba(43, 108, 176, 0.3);
+        }
+
+        .hero .btn-hero.primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .hero .btn-hero.outline {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hero .btn-hero.outline:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+            gap: var(--gap);
+            margin-top: clamp(24px, 4vw, 40px);
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            padding: clamp(20px, 3vw, 30px) clamp(16px, 2vw, 20px);
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .feature-card .icon {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .feature-card h3 {
+            font-size: clamp(1rem, 1.5vw, 1.2rem);
+        }
+
+        .feature-card p {
+            font-size: clamp(0.85rem, 1.2vw, 0.95rem);
+            color: var(--text-muted);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(1.6rem, 4vw, 2.6rem);
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .section-title span {
+            color: var(--primary);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: clamp(0.9rem, 1.3vw, 1.1rem);
+            margin-bottom: clamp(20px, 4vw, 40px);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ===== ПРИМЕРЫ РАБОТ ===== */
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+            gap: var(--gap);
+        }
+
+        .example-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .example-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .example-card .example-preview {
+            position: relative;
+            width: 100%;
+            padding-bottom: 62.5%;
+            background: #edf2f7;
+            overflow: hidden;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .example-card .example-preview img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .example-card .example-preview:hover img {
+            transform: scale(1.05);
+        }
+
+        .example-card .example-preview .preview-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+            color: white;
+            font-weight: 600;
+            gap: 12px;
+        }
+
+        .example-card .example-preview:hover .preview-overlay {
+            opacity: 1;
+        }
+
+        .example-card .example-preview .preview-overlay .preview-btn {
+            background: white;
+            color: #1a202c;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: clamp(0.75rem, 1vw, 0.85rem);
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            touch-action: manipulation;
+        }
+
+        .example-card .example-preview .preview-overlay .preview-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .example-body {
+            padding: clamp(16px, 2.5vw, 24px);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .example-body .price-tag {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 2px 14px;
+            border-radius: 30px;
+            font-size: clamp(0.7rem, 1vw, 0.85rem);
+            font-weight: 700;
+            margin-bottom: 6px;
+            align-self: flex-start;
+        }
+
+        .example-body h3 {
+            font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+            margin-bottom: 4px;
+        }
+
+        .example-body .features {
+            list-style: none;
+            margin: 8px 0 12px;
+            flex: 1;
+        }
+
+        .example-body .features li {
+            padding: 3px 0;
+            color: var(--text-muted);
+            font-size: clamp(0.85rem, 1.1vw, 0.95rem);
+        }
+
+        .example-body .features .check {
+            color: #38a169;
+            font-weight: 700;
+        }
+
+        .example-body .features .cross {
+            color: var(--secondary);
+            font-weight: 700;
+        }
+
+        /* ===== ОТЗЫВЫ ===== */
+        .reviews-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            max-height: 600px;
+            overflow-y: auto;
+            padding-right: 8px;
+        }
+
+        .reviews-list::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .reviews-list::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        .review-item {
+            background: var(--card-bg);
+            padding: clamp(14px, 2vw, 22px);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--primary);
+            position: relative;
+        }
+
+        .review-item .stars {
+            color: var(--accent);
+            font-size: clamp(1rem, 1.5vw, 1.2rem);
+            letter-spacing: 2px;
+        }
+
+        .review-item .review-text {
+            margin: 4px 0 8px;
+            font-style: italic;
+            color: #2d3748;
+            font-size: clamp(0.9rem, 1.2vw, 0.95rem);
+        }
+
+        .review-item .review-author {
+            font-weight: 600;
+            font-size: clamp(0.85rem, 1.1vw, 0.9rem);
+            color: var(--primary);
+        }
+
+        .review-item .review-date {
+            font-size: clamp(0.65rem, 0.9vw, 0.75rem);
+            color: var(--text-light);
+        }
+
+        .review-item .review-delete {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+
+        .review-item .review-delete:hover {
+            color: var(--secondary);
+            background: #fff5f5;
+        }
+
+        .review-form {
+            background: var(--card-bg);
+            padding: clamp(16px, 3vw, 28px);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            margin-bottom: 24px;
+        }
+
+        .review-form h3 {
+            margin-bottom: 12px;
+            font-size: clamp(1rem, 1.5vw, 1.2rem);
+        }
+
+        .review-form input,
+        .review-form textarea {
+            width: 100%;
+            padding: clamp(10px, 1.5vw, 14px) clamp(12px, 1.5vw, 16px);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-size: clamp(0.9rem, 1.2vw, 1rem);
+            font-family: inherit;
+            margin-bottom: 10px;
+            transition: var(--transition);
+            background: var(--bg);
+        }
+
+        .review-form input:focus,
+        .review-form textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.1);
+            background: white;
+        }
+
+        .review-form textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .review-form .star-rating {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 10px;
+            font-size: clamp(1.6rem, 3vw, 2rem);
+            cursor: pointer;
+            flex-wrap: wrap;
+        }
+
+        .review-form .star-rating span {
+            color: #e2e8f0;
+            transition: var(--transition);
+            user-select: none;
+            line-height: 1;
+        }
+
+        .review-form .star-rating span.active {
+            color: var(--accent);
+        }
+
+        .review-form .star-rating span:hover {
+            transform: scale(1.2);
+        }
+
+        .review-form .captcha-row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .review-form .captcha-row .captcha-text {
+            background: #edf2f7;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: clamp(1rem, 1.5vw, 1.2rem);
+            letter-spacing: 4px;
+            font-family: monospace;
+            color: var(--primary);
+            user-select: none;
+            flex-shrink: 0;
+        }
+
+        .review-form .captcha-row input {
+            flex: 1;
+            min-width: 100px;
+            margin-bottom: 0;
+        }
+
+        .review-form .captcha-row .captcha-refresh {
+            background: none;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 6px 12px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+
+        .review-form .captcha-row .captcha-refresh:hover {
+            background: #edf2f7;
+        }
+
+        /* ===== КОНТАКТЫ ===== */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: var(--gap);
+            margin-top: 8px;
+        }
+
+        .contact-info {
+            background: var(--card-bg);
+            padding: clamp(20px, 3vw, 30px);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+        }
+
+        .contact-info .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+        }
+
+        .contact-info .contact-item:last-child {
+            border-bottom: none;
+        }
+
+        .contact-info .contact-item .icon {
+            font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+            width: 40px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .contact-info .contact-item .info {
+            flex: 1;
+            min-width: 100px;
+        }
+
+        .contact-info .contact-item .info .label {
+            font-size: clamp(0.7rem, 0.9vw, 0.8rem);
+            color: var(--text-light);
+        }
+
+        .contact-info .contact-item .info .value {
+            font-weight: 600;
+            font-size: clamp(0.85rem, 1.2vw, 1.05rem);
+            word-break: break-word;
+        }
+
+        .contact-info .contact-item .actions {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .contact-info .contact-item .actions .mini-btn {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: clamp(0.65rem, 0.9vw, 0.75rem);
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            touch-action: manipulation;
+            min-height: 32px;
+        }
+
+        .contact-info .contact-item .actions .mini-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .contact-info .contact-item .actions .mini-btn.phone {
+            background: #48bb78;
+            color: white;
+        }
+
+        .contact-info .contact-item .actions .mini-btn.tg {
+            background: #0088cc;
+            color: white;
+        }
+
+        .contact-info .contact-item .actions .mini-btn.wapp {
+            background: #25d366;
+            color: white;
+        }
+
+        .contact-info .contact-item .actions .mini-btn.email {
+            background: var(--primary);
+            color: white;
+        }
+
+        .contact-form {
+            background: var(--card-bg);
+            padding: clamp(20px, 3vw, 30px);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .contact-form h3 {
+            font-size: clamp(1rem, 1.5vw, 1.2rem);
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: clamp(10px, 1.5vw, 14px) clamp(12px, 1.5vw, 16px);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-size: clamp(0.9rem, 1.2vw, 1rem);
+            transition: var(--transition);
+            font-family: inherit;
+            background: var(--bg);
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.1);
+            background: white;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .contact-form .contact-hint {
+            font-size: clamp(0.75rem, 1vw, 0.85rem);
+            color: var(--text-light);
+            margin-top: -6px;
+            margin-bottom: 2px;
+        }
+
+        .contact-form .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        /* ===== FAQ ===== */
+        .faq-section {
+            margin-top: 4px;
+        }
+
+        .faq-item {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: clamp(14px, 2vw, 22px);
+            margin-bottom: 10px;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .faq-item:hover {
+            box-shadow: var(--shadow-hover);
+        }
+
+        .faq-item .question {
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            font-size: clamp(0.95rem, 1.3vw, 1.05rem);
+        }
+
+        .faq-item .question .arrow {
+            transition: var(--transition);
+            color: var(--text-light);
+            font-size: 0.8rem;
+            flex-shrink: 0;
+        }
+
+        .faq-item.open .question .arrow {
+            transform: rotate(180deg);
+        }
+
+        .faq-item .answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+            color: var(--text-muted);
+            font-size: clamp(0.9rem, 1.2vw, 0.95rem);
+        }
+
+        .faq-item.open .answer {
+            max-height: 400px;
+            padding-top: 12px;
+        }
+
+        /* ===== АДМИН-ПАНЕЛЬ (скрытая) ===== */
+        .admin-panel {
+            display: none;
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            padding: clamp(16px, 3vw, 30px);
+            box-shadow: var(--shadow-hover);
+            margin-top: 24px;
+        }
+
+        .admin-panel.active {
+            display: block;
+        }
+
+        .admin-panel h3 {
+            font-size: clamp(1.1rem, 1.8vw, 1.3rem);
+            margin-bottom: 16px;
+            color: var(--primary);
+        }
+
+        .admin-panel h4 {
+            font-size: clamp(0.95rem, 1.3vw, 1.1rem);
+            margin: 16px 0 8px;
+        }
+
+        .admin-panel .admin-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .admin-panel .admin-form input,
+        .admin-panel .admin-form textarea {
+            padding: 10px 14px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-size: clamp(0.85rem, 1.1vw, 0.95rem);
+            font-family: inherit;
+            background: var(--bg);
+            width: 100%;
+        }
+
+        .admin-panel .admin-form input:focus,
+        .admin-panel .admin-form textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .admin-panel .admin-form .admin-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .admin-panel .admin-examples-list {
+            margin-top: 12px;
+        }
+
+        .admin-panel .admin-example-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 14px;
+            background: var(--bg);
+            border-radius: 10px;
+            margin-bottom: 6px;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .admin-panel .admin-example-item .info {
+            font-size: clamp(0.8rem, 1.1vw, 0.9rem);
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .admin-panel .admin-example-item .info .name {
+            font-weight: 600;
+        }
+
+        .admin-panel .admin-example-item .info .price {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .admin-panel .admin-example-item .admin-example-delete {
+            background: none;
+            border: none;
+            color: var(--secondary);
+            cursor: pointer;
+            font-size: 1.1rem;
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+
+        .admin-panel .admin-example-item .admin-example-delete:hover {
+            background: #fff5f5;
+        }
+
+        /* ===== АДМИН-ЛОГИН МОДАЛКА ===== */
+        .admin-login-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+
+        .admin-login-modal.active {
+            display: flex;
+        }
+
+        .admin-login-modal .login-box {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            padding: clamp(24px, 4vw, 32px);
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.2);
+            animation: modalPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .admin-login-modal .login-box h3 {
+            margin-bottom: 4px;
+            font-size: clamp(1.2rem, 2vw, 1.4rem);
+        }
+
+        .admin-login-modal .login-box p {
+            color: var(--text-muted);
+            font-size: clamp(0.85rem, 1.2vw, 0.95rem);
+            margin-bottom: 16px;
+        }
+
+        .admin-login-modal .login-box input {
+            width: 100%;
+            padding: clamp(10px, 1.5vw, 14px) 16px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-size: clamp(0.95rem, 1.2vw, 1rem);
+            margin-bottom: 12px;
+            background: var(--bg);
+        }
+
+        .admin-login-modal .login-box input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .admin-login-modal .login-box .login-error {
+            color: var(--secondary);
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+            display: none;
+        }
+
+        .admin-login-modal .login-box .login-error.show {
+            display: block;
+        }
+
+        .admin-login-modal .login-box .btn-group {
+            display: flex;
+            gap: 12px;
+        }
+
+        .admin-login-modal .login-box .btn-group .btn {
+            flex: 1;
+            text-align: center;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            padding: clamp(20px, 4vw, 32px);
+            max-width: 500px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: modalPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes modalPop {
+            0% {
+                transform: scale(0.85) rotate(-2deg);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        .modal-content h3 {
+            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+            margin-bottom: 4px;
+        }
+
+        .modal-content .modal-sub {
+            color: var(--text-muted);
+            font-size: clamp(0.85rem, 1.2vw, 0.95rem);
+            margin-bottom: 16px;
+        }
+
+        .modal-content .modal-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .modal-content .modal-option {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 16px;
+            background: var(--bg);
+            border-radius: var(--radius);
+            border: 2px solid transparent;
+            transition: var(--transition);
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .modal-content .modal-option:hover {
+            border-color: var(--primary);
+            background: #edf2f7;
+            transform: translateX(4px);
+        }
+
+        .modal-content .modal-option .thumb {
+            width: clamp(48px, 8vw, 60px);
+            height: clamp(48px, 8vw, 60px);
+            border-radius: 12px;
+            object-fit: cover;
+            flex-shrink: 0;
+            background: #edf2f7;
+        }
+
+        .modal-content .modal-option .info .title {
+            font-weight: 600;
+            font-size: clamp(0.9rem, 1.3vw, 1rem);
+        }
+
+        .modal-content .modal-option .info .desc {
+            font-size: clamp(0.75rem, 1vw, 0.85rem);
+            color: var(--text-light);
+        }
+
+        .modal-content .modal-option .arrow-icon {
+            margin-left: auto;
+            color: var(--primary);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .modal-content .modal-close {
+            margin-top: 16px;
+            width: 100%;
+            padding: clamp(10px, 1.5vw, 12px);
+            border: none;
+            border-radius: 12px;
+            background: var(--bg);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: clamp(0.9rem, 1.2vw, 1rem);
+        }
+
+        .modal-content .modal-close:hover {
+            background: #e2e8f0;
+        }
+
+        /* ===== СОГЛАСИЕ НА ПД (внутри формы) ===== */
+        .pd-consent-wrapper {
+            background: #f7fafc;
+            border-radius: var(--radius);
+            padding: 16px 20px;
+            border: 1px solid var(--border);
+            margin: 8px 0 4px;
+        }
+        .pd-consent-wrapper .pd-checkbox-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .pd-consent-wrapper .pd-checkbox-row input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-top: 2px;
+            flex-shrink: 0;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+        .pd-consent-wrapper .pd-checkbox-row label {
+            font-size: clamp(0.85rem, 1.1vw, 0.95rem);
+            color: var(--text-muted);
+            cursor: pointer;
+            line-height: 1.5;
+        }
+        .pd-consent-wrapper .pd-checkbox-row label a {
+            color: var(--primary);
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        .pd-consent-wrapper .pd-checkbox-row label a:hover {
+            color: var(--primary-dark);
+        }
+        .pd-consent-wrapper .pd-error {
+            color: var(--secondary);
+            font-size: 0.85rem;
+            margin-top: 6px;
+            display: none;
+        }
+        .pd-consent-wrapper .pd-error.show {
+            display: block;
+        }
+
+        /* ===== TOAST ===== */
+        .toast {
+            position: fixed;
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-20px);
+            background: #38a169;
+            color: white;
+            padding: clamp(12px, 2vw, 18px) clamp(20px, 3vw, 32px);
+            border-radius: var(--radius);
+            font-weight: 600;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            z-index: 99999;
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            pointer-events: none;
+            max-width: 92%;
+            text-align: center;
+            font-size: clamp(0.85rem, 1.2vw, 1rem);
+        }
+
+        .toast.error {
+            background: var(--secondary);
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+            pointer-events: auto;
+        }
+
+        /* ===== ФУТЕР ===== */
+        .footer {
+            background: #1a202c;
+            color: var(--text-light);
+            padding: clamp(16px, 3vw, 24px) 0;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .footer .heart {
+            color: var(--secondary);
+            display: inline-block;
+            animation: heartPulse 1.6s ease-in-out infinite;
+        }
+
+        @keyframes heartPulse {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        .footer p {
+            font-size: clamp(0.75rem, 1vw, 0.9rem);
+        }
+
+        /* ============================================================
+           АДАПТИВ
+           ============================================================ */
+        @media (max-width: 992px) {
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+                max-width: 600px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .admin-panel .admin-form .admin-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar .container {
+                flex-wrap: nowrap;
+            }
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                background: var(--card-bg);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                padding: 16px 20px;
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+                gap: 6px;
+                border-top: 1px solid var(--border);
+            }
+            .nav-menu.open {
+                display: flex;
+            }
+            .nav-link {
+                padding: 10px 16px;
+                font-size: 1rem;
+                width: 100%;
+                text-align: left;
+                border-radius: 8px;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .hero .btn-group {
+                flex-direction: column;
+                align-items: center;
+            }
+            .hero .btn-hero {
+                width: 100%;
+                max-width: 320px;
+            }
+            .contact-form .form-row {
+                grid-template-columns: 1fr;
+            }
+            .contact-info .contact-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .contact-info .contact-item .actions {
+                width: 100%;
+                justify-content: flex-start;
+            }
+            .admin-login-modal .login-box .btn-group {
+                flex-direction: column;
+            }
+            .modal-content .modal-option {
+                flex-wrap: wrap;
+                justify-content: center;
+                text-align: center;
+            }
+            .modal-content .modal-option .arrow-icon {
+                margin-left: 0;
+            }
+            .examples-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .features-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .review-form .captcha-row {
+                flex-wrap: wrap;
+            }
+            .review-form .captcha-row input {
+                min-width: 100px;
+                flex: 1;
+            }
+            .pd-consent-wrapper .pd-checkbox-row {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .container {
+                padding: 0 12px;
+            }
+            .hero {
+                min-height: 240px;
+                padding: 24px 16px;
+                border-radius: var(--radius);
+            }
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            .section-title {
+                font-size: 1.4rem;
+            }
+            .review-form {
+                padding: 16px;
+            }
+            .contact-info {
+                padding: 16px;
+            }
+            .contact-form {
+                padding: 16px;
+            }
+            .admin-panel {
+                padding: 16px;
+            }
+            .modal-content {
+                padding: 16px;
+            }
+            .toast {
+                top: 8px;
+                padding: 10px 16px;
+                font-size: 0.85rem;
+            }
+            .logo {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (min-width: 1400px) {
+            :root {
+                --container: 1300px;
+                --gap: 32px;
+            }
+            .hero h1 {
+                font-size: 3.8rem;
+            }
+            .examples-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+
+        @supports (-webkit-backdrop-filter: blur(8px)) {
+            .admin-login-modal {
+                -webkit-backdrop-filter: blur(4px);
+            }
+            .modal-overlay {
+                -webkit-backdrop-filter: blur(8px);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== TOAST ===== -->
+    <div class="toast" id="toast"></div>
+
+    <!-- ===== МОДАЛЬНОЕ ОКНО ДЛЯ ПРИМЕРОВ ===== -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <h3 id="modalTitle">💐 Поздравление</h3>
+            <p class="modal-sub" id="modalSub">Выберите вариант:</p>
+            <div class="modal-options" id="modalOptions"></div>
+            <button class="modal-close" id="modalClose">Закрыть</button>
+        </div>
+    </div>
+
+    <!-- ===== АДМИН-ЛОГИН МОДАЛКА ===== -->
+    <div class="admin-login-modal" id="adminLoginModal">
+        <div class="login-box">
+            <h3>🔐 Вход в админ-панель</h3>
+            <p>Введите пароль для управления контентом</p>
+            <input type="password" id="adminPassword" placeholder="Пароль" />
+            <div class="login-error" id="loginError">Неверный пароль</div>
+            <div class="btn-group">
+                <button class="btn btn-primary" id="adminLoginSubmit">Войти</button>
+                <button class="btn btn-outline" id="adminLoginCancel">Отмена</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== НАВИГАЦИЯ ===== -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">Прайс<span>Код</span></div>
+            <button class="hamburger" id="hamburger" aria-label="Меню">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#" class="nav-link active" data-tab="home">Главная</a></li>
+                <li><a href="#" class="nav-link" data-tab="examples">Примеры</a></li>
+                <li><a href="#" class="nav-link" data-tab="reviews">Отзывы</a></li>
+                <li><a href="#" class="nav-link" data-tab="faq">FAQ</a></li>
+                <li><a href="#" class="nav-link" data-tab="contact">Контакты</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ===== ОСНОВНОЙ КОНТЕНТ ===== -->
+    <main class="container">
+
+        <!-- ===== ГЛАВНАЯ ===== -->
+        <section id="home" class="tab-content active">
+            <div class="hero">
+                <div class="badge">🚀 Разработка сайтов под ключ</div>
+                <h1>Прозрачные <span>цены</span> на разработку сайтов</h1>
+                <p>От простого поздравления до полноценного многостраничного сайта с админкой.</p>
+                <div class="btn-group">
+                    <a href="#" class="btn-hero primary" data-tab="examples">Смотреть примеры</a>
+                    <a href="#" class="btn-hero outline" data-tab="contact">Связаться</a>
+                </div>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="icon">⚡</span>
+                    <h3>Быстро</h3>
+                    <p>Поздравления от 2 часов, сайты от 2 дней.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="icon">💎</span>
+                    <h3>Прозрачно</h3>
+                    <p>Фиксированные цены без скрытых платежей.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="icon">❤️</span>
+                    <h3>С душой</h3>
+                    <p>Каждый проект делаю с вниманием к деталям.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== ПРИМЕРЫ РАБОТ ===== -->
+        <section id="examples" class="tab-content">
+            <h2 class="section-title">Примеры <span>моих работ</span></h2>
+            <p class="section-subtitle">Посмотри, что я делаю, и выбери подходящий вариант</p>
+
+            <div class="examples-grid" id="examplesGrid"></div>
+
+            <!-- СКРЫТАЯ АДМИН-ПАНЕЛЬ -->
+            <div class="admin-panel" id="adminPanel">
+                <h3>🛠️ Управление контентом</h3>
+
+                <h4>📝 Управление отзывами</h4>
+                <div id="adminReviewsList"></div>
+
+                <h4>➕ Добавить пример</h4>
+                <form class="admin-form" id="adminExampleForm">
+                    <div class="admin-row">
+                        <input type="text" placeholder="Название" id="adminExampleName" required />
+                        <input type="text" placeholder="Цена (например: от 200 ₽)" id="adminExamplePrice" required />
+                    </div>
+                    <input type="text" placeholder="Фото (например: images/4.jpg)" id="adminExampleImage" required />
+                    <textarea rows="3" placeholder="Описание (каждый пункт с новой строки)" id="adminExampleDesc" required></textarea>
+                    <div class="admin-row">
+                        <input type="text" placeholder="Ключ модалки (congratulation / info)" id="adminExampleKey" />
+                        <input type="text" placeholder="Ссылка на пример" id="adminExampleUrl" />
+                    </div>
+                    <button type="submit" class="btn btn-primary">➕ Добавить пример</button>
+                </form>
+
+                <h4>📋 Существующие примеры</h4>
+                <div class="admin-examples-list" id="adminExamplesContainer"></div>
+            </div>
+        </section>
+
+        <!-- ===== ОТЗЫВЫ ===== -->
+        <section id="reviews" class="tab-content">
+            <h2 class="section-title">Реальные <span>отзывы</span></h2>
+            <p class="section-subtitle">Оставь свой отзыв или посмотри, что говорят другие</p>
+
+            <div class="review-form" id="reviewForm">
+                <h3>📝 Написать отзыв</h3>
+                <input type="text" placeholder="Ваше имя" id="reviewName" required />
+                <div class="star-rating" id="starRating">
+                    <span data-value="1">☆</span>
+                    <span data-value="2">☆</span>
+                    <span data-value="3">☆</span>
+                    <span data-value="4">☆</span>
+                    <span data-value="5">☆</span>
+                </div>
+                <input type="hidden" id="reviewStars" value="5" />
+                <textarea placeholder="Расскажите о вашем опыте..." id="reviewText" required></textarea>
+                <div class="captcha-row">
+                    <span class="captcha-text" id="captchaText">A7F2</span>
+                    <input type="text" placeholder="Введите код" id="captchaInput" required />
+                    <button type="button" class="captcha-refresh" id="captchaRefresh">🔄</button>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%;">Оставить отзыв</button>
+            </div>
+
+            <div class="reviews-list" id="reviewsList"></div>
+        </section>
+
+        <!-- ===== FAQ ===== -->
+        <section id="faq" class="tab-content">
+            <h2 class="section-title">Часто задаваемые <span>вопросы</span></h2>
+            <p class="section-subtitle">Всё, что ты хотел узнать, но боялся спросить 😊</p>
+            <div class="faq-section">
+                <div class="faq-item open">
+                    <div class="question"><span>❓ Сколько времени занимает разработка?</span><span class="arrow">▼</span></div>
+                    <div class="answer">Поздравления — от 2 часов. Сайт-визитка — 1–2 дня. Многостраничный сайт — от 3 дней, в зависимости от сложности.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="question"><span>❓ Что нужно для начала работы?</span><span class="arrow">▼</span></div>
+                    <div class="answer">Текст, фото, видео (если есть) и описание того, что ты хочешь. Всё остальное я делаю сам!</div>
+                </div>
+                <div class="faq-item">
+                    <div class="question"><span>❓ Можно ли добавить страницы позже?</span><span class="arrow">▼</span></div>
+                    <div class="answer">Да, конечно! Дополнительные страницы обсуждаются индивидуально.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="question"><span>❓ Когда нужно оплачивать?</span><span class="arrow">▼</span></div>
+                    <div class="answer">Оплата после того, как сайт будет готов и вам понравится результат. Никаких предоплат!</div>
+                </div>
+                <div class="faq-item">
+                    <div class="question"><span>❓ А если не понравится результат?</span><span class="arrow">▼</span></div>
+                    <div class="answer">Вношу правки до полного согласования! Ты всегда можешь попросить изменить дизайн, цвета или текст.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== КОНТАКТЫ ===== -->
+        <section id="contact" class="tab-content">
+            <h2 class="section-title">Свяжитесь <span>со мной</span></h2>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span class="icon">📧</span>
+                        <div class="info">
+                            <div class="label">Email</div>
+                            <div class="value">pricefixvaninl@gmail.com</div>
+                        </div>
+                        <div class="actions">
+                            <a href="mailto:pricefixvaninl@gmail.com" class="mini-btn email">✉️ Написать</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="icon">📱</span>
+                        <div class="info">
+                            <div class="label">Телефон</div>
+                            <div class="value">+7 909 864 91 40</div>
+                        </div>
+                        <div class="actions">
+                            <a href="tel:+79098649140" class="mini-btn phone">📞 Позвонить</a>
+                            <a href="https://t.me/+79098649140" target="_blank" class="mini-btn tg">💬 Telegram</a>
+                            <a href="https://wa.me/79098649140" target="_blank" class="mini-btn wapp">💬 WhatsApp</a>
+                        </div>
+                    </div>
+                    <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border);">
+                        <p style="font-size:clamp(0.85rem,1.2vw,0.95rem);color:var(--text-muted);">
+                            <strong>⚡ Быстрый ответ:</strong> Отвечаю в течение часа
+                        </p>
+                        <p style="font-size:clamp(0.75rem,1vw,0.85rem);color:var(--text-light);margin-top:4px;">
+                            Работаю по всей России и за рубежом
+                        </p>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <h3>📩 Отправить заявку</h3>
+                    <input type="text" placeholder="Ваше имя" id="formName" required />
+                    <div class="form-row">
+                        <input type="email" placeholder="Email" id="formEmail" />
+                        <input type="tel" placeholder="Телефон" id="formPhone" />
+                    </div>
+                    <p class="contact-hint">📌 Укажите Email или Телефон — на что удобнее получить ответ</p>
+                    <textarea rows="4" placeholder="Опишите задачу..." id="formMessage" required></textarea>
+                    
+                    <!-- ===== СОГЛАСИЕ НА ПД (ВНУТРИ ФОРМЫ) ===== -->
+                    <div class="pd-consent-wrapper">
+                        <div class="pd-checkbox-row">
+                            <input type="checkbox" id="pdCheckbox" />
+                            <label for="pdCheckbox">
+                                Я принимаю условия <a id="pdTextLink">обработки персональных данных</a> и даю своё согласие на их обработку
+                            </label>
+                        </div>
+                        <div class="pd-error" id="pdError">⚠️ Для отправки заявки необходимо согласие на обработку персональных данных</div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" id="formSubmit">Отправить заявку</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===== ФУТЕР ===== -->
+    <footer class="footer">
+        <div class="container">
+            <p><span class="heart">❤️</span> ПрайсКод — прозрачные цены на разработку сайтов</p>
+            <p style="font-size:clamp(0.7rem,0.9vw,0.8rem);opacity:0.5;margin-top:4px;">© 2026 Все права защищены</p>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+         JAVASCRIPT
+         ============================================================ -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // ==========================================================
+            // 1. ЛОГИКА СОГЛАСИЯ НА ПД (при отправке заявки)
+            // ==========================================================
+            const pdCheckbox = document.getElementById('pdCheckbox');
+            const pdError = document.getElementById('pdError');
+            const pdTextLink = document.getElementById('pdTextLink');
+
+            // Функция для показа модалки с текстом согласия
+            function showPdModal() {
+                const modalOverlay = document.createElement('div');
+                modalOverlay.id = 'pdModalOverlay';
+                modalOverlay.style.cssText = `
+                    position: fixed;
+                    top: 0; left: 0;
+                    width: 100%; height: 100%;
+                    background: rgba(0,0,0,0.7);
+                    backdrop-filter: blur(8px);
+                    -webkit-backdrop-filter: blur(8px);
+                    z-index: 100000;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 20px;
+                    animation: fadeIn 0.3s ease;
+                `;
+
+                const modalBox = document.createElement('div');
+                modalBox.style.cssText = `
+                    background: white;
+                    border-radius: 24px;
+                    padding: 30px;
+                    max-width: 600px;
+                    width: 100%;
+                    max-height: 90vh;
+                    overflow-y: auto;
+                    animation: modalPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+                `;
+
+                modalBox.innerHTML = `
+                    <h2 style="font-size:1.6rem; margin-bottom: 8px; color: #2b6cb0;">🔒 Согласие на обработку ПД</h2>
+                    <div style="font-size:0.95rem; color: #4a5568; line-height: 1.8; margin-bottom: 16px; max-height: 300px; overflow-y: auto; padding-right: 10px;">
+                        <p><strong>Уважаемый пользователь!</strong></p>
+                        <p>Давая согласие, вы подтверждаете, что ознакомлены с условиями обработки персональных данных в соответствии с <strong>Федеральным законом № 152-ФЗ «О персональных данных»</strong>.</p>
+                        <br />
+                        <p><strong>Какие данные собираются:</strong></p>
+                        <ul style="padding-left:20px;">
+                            <li>• Имя (которое вы указываете в форме)</li>
+                            <li>• Адрес электронной почты (если указываете)</li>
+                            <li>• Номер телефона (если указываете)</li>
+                            <li>• Текст сообщения (которое вы отправляете)</li>
+                        </ul>
+                        <br />
+                        <p><strong>Цель сбора данных:</strong></p>
+                        <ul style="padding-left:20px;">
+                            <li>• Обработка ваших заявок</li>
+                            <li>• Связь с вами для уточнения деталей</li>
+                            <li>• Отправка ответов на ваши вопросы</li>
+                        </ul>
+                        <br />
+                        <p><strong>Вы можете в любой момент:</strong></p>
+                        <ul style="padding-left:20px;">
+                            <li>• Отозвать своё согласие, написав на <strong>pricefixvaninl@gmail.com</strong></li>
+                            <li>• Запросить удаление всех ваших данных</li>
+                        </ul>
+                    </div>
+                    <button class="btn btn-primary" id="pdModalClose" style="width:100%;">✅ Я ознакомлен(а) и согласен(на)</button>
+                `;
+
+                modalOverlay.appendChild(modalBox);
+                document.body.appendChild(modalOverlay);
+                document.body.style.overflow = 'hidden';
+
+                // Закрытие по клику на оверлей
+                modalOverlay.addEventListener('click', function(e) {
+                    if (e.target === modalOverlay) {
+                        closePdModal(modalOverlay);
+                    }
+                });
+
+                // Закрытие по кнопке
+                document.getElementById('pdModalClose').addEventListener('click', function() {
+                    closePdModal(modalOverlay);
+                });
+
+                // Закрытие по ESC
+                function handleEsc(e) {
+                    if (e.key === 'Escape') {
+                        closePdModal(modalOverlay);
+                        document.removeEventListener('keydown', handleEsc);
+                    }
+                }
+                document.addEventListener('keydown', handleEsc);
+            }
+
+            function closePdModal(modalOverlay) {
+                if (modalOverlay) {
+                    modalOverlay.remove();
+                    document.body.style.overflow = '';
+                }
+            }
+
+            // Открытие модалки по клику на "обработки персональных данных"
+            pdTextLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                showPdModal();
+            });
+
+            // ==========================================================
+            // 2. ОТПРАВКА ЗАЯВКИ С ПРОВЕРКОЙ СОГЛАСИЯ
+            // ==========================================================
+            document.getElementById('contactForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                // Проверяем, поставлена ли галочка
+                if (!pdCheckbox.checked) {
+                    pdError.classList.add('show');
+                    pdCheckbox.focus();
+                    return;
+                } else {
+                    pdError.classList.remove('show');
+                }
+
+                const name = document.getElementById('formName').value.trim();
+                const email = document.getElementById('formEmail').value.trim();
+                const phone = document.getElementById('formPhone').value.trim();
+                const message = document.getElementById('formMessage').value.trim();
+                const submitBtn = document.getElementById('formSubmit');
+
+                if (!name || !message) { showToast('⚠️ Заполните имя и сообщение!', 'error'); return; }
+                if (!email && !phone) { showToast('⚠️ Укажите Email или Телефон!', 'error'); return; }
+
+                const FORMSPREE_URL = 'https://formspree.io/f/mlgqovva';
+
+                // Формируем текст для файла (без упоминания моей почты)
+                const consentText = `
+        ═══════════════════════════════════════════════════
+           СОГЛАСИЕ НА ОБРАБОТКУ ПЕРСОНАЛЬНЫХ ДАННЫХ
+        ═══════════════════════════════════════════════════
+
+        Я, ${name}, даю своё согласие на обработку
+        моих персональных данных в соответствии с Федеральным
+        законом № 152-ФЗ «О персональных данных».
+
+        📋 Данные, которые я предоставляю:
+        ─────────────────────────────────────────────
+        👤 Имя: ${name}
+        📧 Email: ${email || 'Не указан'}
+        📱 Телефон: ${phone || 'Не указан'}
+        📝 Сообщение: ${message}
+
+        🎯 Цель обработки:
+        ─────────────────────────────────────────────
+        • Обработка моих заявок и обращений
+        • Связь со мной для уточнения деталей
+        • Отправка ответов на мои вопросы
+
+        📅 Дата и время: ${new Date().toLocaleString('ru-RU')}
+        ═══════════════════════════════════════════════════
+           Согласие дано добровольно и осознанно
+        ═══════════════════════════════════════════════════`;
+
+                submitBtn.disabled = true;
+                submitBtn.textContent = '⏳ Отправка...';
+
+                try {
+                    // Отправляем заявку на почту (с текстом согласия)
+                    const response = await fetch(FORMSPREE_URL, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            name: name,
+                            email: email,
+                            phone: phone,
+                            message: message + '\n\n--- СОГЛАСИЕ НА ПД ---\n' + consentText
+                        })
+                    });
+
+                    if (response.ok) {
+                        // Скачиваем файл у пользователя (без моей почты)
+                        downloadConsentFile(consentText);
+                        showToast('✅ Заявка отправлена! Файл с согласием скачан.', 'success');
+                        this.reset();
+                        pdCheckbox.checked = false;
+                    } else {
+                        showToast(
+                            '❌ Ошибка отправки. Напишите мне напрямую: pricefixvaninl@gmail.com или +7 909 864 91 40',
+                            'error'
+                        );
+                    }
+                } catch (error) {
+                    showToast(
+                        '⚠️ Нет связи с сервером. Напишите мне: pricefixvaninl@gmail.com или +7 909 864 91 40',
+                        'error'
+                    );
+                }
+
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Отправить заявку';
+            });
+
+            // Функция скачивания файла
+            function downloadConsentFile(text) {
+                const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `Согласие_ПД_${new Date().toISOString().slice(0,10)}.txt`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }
+
+            // ==========================================================
+            // 3. ОСТАЛЬНАЯ ЛОГИКА (админка, отзывы, примеры и т.д.)
+            // ==========================================================
+            const ADMIN_PASSWORD = 'admin123';
+
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('admin') === 'true') {
+                document.getElementById('adminLoginModal').classList.add('active');
+                const newUrl = window.location.pathname + window.location.hash;
+                window.history.replaceState({}, document.title, newUrl);
+            }
+
+            let isAdmin = false;
+            const adminLoginModal = document.getElementById('adminLoginModal');
+            const adminPassword = document.getElementById('adminPassword');
+            const adminLoginSubmit = document.getElementById('adminLoginSubmit');
+            const adminLoginCancel = document.getElementById('adminLoginCancel');
+            const loginError = document.getElementById('loginError');
+            const adminPanel = document.getElementById('adminPanel');
+
+            adminLoginSubmit.addEventListener('click', function() {
+                if (adminPassword.value === ADMIN_PASSWORD) {
+                    isAdmin = true;
+                    adminLoginModal.classList.remove('active');
+                    adminPanel.classList.add('active');
+                    renderAdminReviews();
+                    renderAdminExamples();
+                    showToast('✅ Вход в админ-панель выполнен', 'success');
+                } else {
+                    loginError.classList.add('show');
+                }
+            });
+
+            adminLoginCancel.addEventListener('click', function() {
+                adminLoginModal.classList.remove('active');
+            });
+
+            adminPassword.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') adminLoginSubmit.click();
+            });
+
+            // ===== ПРИМЕРЫ =====
+            const defaultExamples = [{
+                id: 'ex1',
+                name: '💐 Поздравление / Признание',
+                price: 'от 200 ₽',
+                image: 'images/price-basic.jpg',
+                features: ['✅ 1–2 фото', '✅ Красивое оформление', '✅ Анимации', '❌ Без видео'],
+                modalKey: 'congratulation',
+                modalOptions: [
+                    { title: '🎉 Поздравление', desc: 'Красивое поздравление с анимациями',
+                        url: 'https://yaroslavisaev101-lab.github.io/congratulationn.githab.io/',
+                        thumb: 'images/price-basic.jpg' },
+                    { title: '💕 Признание', desc: 'Романтическое признание в любви',
+                        url: 'https://yaroslavisaev101-lab.github.io/love.githab.io/',
+                        thumb: 'images/price-standard.jpg' }
+                ]
+            }, {
+                id: 'ex2',
+                name: '💖 Поздравление UP',
+                price: 'от 500 ₽',
+                image: 'images/price-standard.jpg',
+                features: ['✅ До 15 фото', '✅ 10 фото + 1 видео', '✅ Музыка на фоне', '✅ Круговые анимации'],
+                modalKey: 'congratulation_up',
+                modalOptions: [
+                    { title: '🎉 Поздравление UP', desc: 'До 15 фото + анимации',
+                        url: 'https://yaroslavisaev101-lab.github.io/congratulation.githab.io/',
+                        thumb: 'images/price-standard.jpg' },
+                    { title: '💕 Признание UP', desc: 'До 15 фото + видео + музыка',
+                        url: 'https://yaroslavisaev101-lab.github.io/loveplus.githab.io/',
+                        thumb: 'images/price-premium.jpg' }
+                ]
+            }, {
+                id: 'ex4',
+                name: '🏗️ Сайт как этот',
+                price: 'от 2 500 ₽',
+                image: 'images/price-premium.jpg',
+                features: ['✅ Многостраничный', '✅ Анимации', '✅ Формы обратной связи',
+                    '✅ Админ-панель (опционально)'
+                ],
+                modalKey: null,
+                modalOptions: []
+            }];
+
+            let examples = JSON.parse(localStorage.getItem('examples')) || defaultExamples;
+
+            function saveExamples() {
+                localStorage.setItem('examples', JSON.stringify(examples));
+            }
+
+            const examplesGrid = document.getElementById('examplesGrid');
+
+            function renderExamples() {
+                examplesGrid.innerHTML = '';
+                examples.forEach(function(ex) {
+                    const card = document.createElement('div');
+                    card.className = 'example-card';
+                    const hasModal = ex.modalKey && ex.modalOptions.length > 0;
+
+                    card.innerHTML = `
+                        <div class="example-preview" data-example-id="${ex.id}" ${!hasModal ? 'style="cursor:default;"' : ''}>
+                            <img src="${ex.image}" alt="${ex.name}" loading="lazy" onerror="this.src='images/price-basic.jpg'" />
+                            ${hasModal ? `
+                            <div class="preview-overlay">
+                                <span class="preview-btn">👁️ Смотреть</span>
+                            </div>
+                            ` : `
+                            <div class="preview-overlay" style="opacity:0;pointer-events:none;"></div>
+                            `}
+                        </div>
+                        <div class="example-body">
+                            <span class="price-tag">${ex.price}</span>
+                            <h3>${ex.name}</h3>
+                            <ul class="features">
+                                ${ex.features.map(f => `<li>${f}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                    examplesGrid.appendChild(card);
+                });
+
+                document.querySelectorAll('.example-preview[data-example-id]').forEach(function(el) {
+                    const id = el.dataset.exampleId;
+                    const ex = examples.find(e => e.id === id);
+                    if (ex && ex.modalKey && ex.modalOptions.length > 0) {
+                        el.addEventListener('click', function() { openModal(ex); });
+                    }
+                });
+            }
+
+            // ===== МОДАЛЬНОЕ ОКНО =====
+            const modalOverlay = document.getElementById('modalOverlay');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalSub = document.getElementById('modalSub');
+            const modalOptions = document.getElementById('modalOptions');
+            const modalClose = document.getElementById('modalClose');
+
+            function openModal(ex) {
+                modalTitle.textContent = ex.name;
+                modalSub.textContent = 'Выберите вариант:';
+                modalOptions.innerHTML = '';
+                ex.modalOptions.forEach(function(opt) {
+                    const a = document.createElement('a');
+                    a.className = 'modal-option';
+                    a.href = opt.url;
+                    a.target = '_blank';
+                    a.innerHTML = `
+                        <img src="${opt.thumb}" alt="${opt.title}" class="thumb" onerror="this.style.display='none'" />
+                        <div class="info">
+                            <div class="title">${opt.title}</div>
+                            <div class="desc">${opt.desc}</div>
+                        </div>
+                        <span class="arrow-icon">→</span>
+                    `;
+                    modalOptions.appendChild(a);
+                });
+                modalOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeModal() {
+                modalOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            modalClose.addEventListener('click', closeModal);
+            modalOverlay.addEventListener('click', function(e) { if (e.target === modalOverlay) closeModal(); });
+            document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+
+            // ===== ОТЗЫВЫ =====
+            let savedReviews = JSON.parse(localStorage.getItem('reviews')) || [];
+
+            function renderReviews() {
+                const list = document.getElementById('reviewsList');
+                list.innerHTML = '';
+                if (savedReviews.length === 0) {
+                    list.innerHTML =
+                        '<div style="text-align:center;color:#a0aec0;padding:20px;">Пока нет отзывов. Будь первым! ✨</div>';
+                    return;
+                }
+                savedReviews.slice().reverse().forEach(function(review, index) {
+                    const div = document.createElement('div');
+                    div.className = 'review-item';
+                    const starsHtml = '★'.repeat(review.stars) + '☆'.repeat(5 - review.stars);
+                    div.innerHTML = `
+                        <div class="stars">${starsHtml}</div>
+                        <div class="review-text">"${review.text}"</div>
+                        <div class="review-author">${review.name}</div>
+                        <div class="review-date">${review.date}</div>
+                    `;
+                    list.appendChild(div);
+                });
+            }
+
+            function renderAdminReviews() {
+                const container = document.getElementById('adminReviewsList');
+                container.innerHTML = '';
+                if (savedReviews.length === 0) {
+                    container.innerHTML = '<div style="color:#a0aec0;padding:8px;">Нет отзывов</div>';
+                    return;
+                }
+                savedReviews.slice().reverse().forEach(function(review, index) {
+                    const div = document.createElement('div');
+                    div.style.cssText =
+                        'display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:#f7fafc;border-radius:8px;margin-bottom:6px;font-size:clamp(0.8rem,1vw,0.9rem);flex-wrap:wrap;gap:8px;';
+                    div.innerHTML = `
+                        <span style="flex:1;min-width:120px;"><strong>${review.name}</strong>: ${review.text.substring(0, 60)}${review.text.length > 60 ? '...' : ''}</span>
+                        <button class="btn btn-danger btn-sm" data-admin-review-index="${savedReviews.length - 1 - index}">🗑️</button>
+                    `;
+                    container.appendChild(div);
+                });
+
+                container.querySelectorAll('[data-admin-review-index]').forEach(function(btn) {
+                    btn.addEventListener('click', function() {
+                        const idx = parseInt(this.dataset.adminReviewIndex);
+                        if (confirm('Удалить этот отзыв?')) {
+                            savedReviews.splice(idx, 1);
+                            localStorage.setItem('reviews', JSON.stringify(savedReviews));
+                            renderReviews();
+                            renderAdminReviews();
+                            showToast('✅ Отзыв удалён', 'success');
+                        }
+                    });
+                });
+            }
+
+            function renderAdminExamples() {
+                const container = document.getElementById('adminExamplesContainer');
+                container.innerHTML = '';
+                examples.forEach(function(ex) {
+                    const div = document.createElement('div');
+                    div.className = 'admin-example-item';
+                    div.innerHTML = `
+                        <div class="info">
+                            <div class="name">${ex.name}</div>
+                            <div class="price">${ex.price}</div>
+                            <div style="font-size:0.8rem;color:#718096;">${ex.image}</div>
+                        </div>
+                        <button class="admin-example-delete" data-id="${ex.id}">🗑️</button>
+                    `;
+                    container.appendChild(div);
+                });
+
+                container.querySelectorAll('.admin-example-delete').forEach(function(btn) {
+                    btn.addEventListener('click', function() {
+                        const id = this.dataset.id;
+                        if (confirm('Удалить этот пример?')) {
+                            examples = examples.filter(e => e.id !== id);
+                            saveExamples();
+                            renderExamples();
+                            renderAdminExamples();
+                            showToast('✅ Пример удалён', 'success');
+                        }
+                    });
+                });
+            }
+
+            document.getElementById('adminExampleForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const name = document.getElementById('adminExampleName').value.trim();
+                const price = document.getElementById('adminExamplePrice').value.trim();
+                const image = document.getElementById('adminExampleImage').value.trim();
+                const descRaw = document.getElementById('adminExampleDesc').value.trim();
+                const modalKey = document.getElementById('adminExampleKey').value.trim() || null;
+                const url = document.getElementById('adminExampleUrl').value.trim() || '#';
+
+                if (!name || !price || !image || !descRaw) {
+                    showToast('⚠️ Заполните все поля!', 'error');
+                    return;
+                }
+
+                const features = descRaw.split('\n').filter(f => f.trim());
+                const newExample = {
+                    id: 'ex' + Date.now(),
+                    name: name,
+                    price: price,
+                    image: image,
+                    features: features,
+                    modalKey: modalKey,
+                    modalOptions: modalKey ? [{ title: name, desc: 'Посмотреть пример', url: url, thumb: image }] : []
+                };
+
+                examples.push(newExample);
+                saveExamples();
+                renderExamples();
+                renderAdminExamples();
+                this.reset();
+                showToast('✅ Пример добавлен!', 'success');
+            });
+
+            // ===== ВКЛАДКИ =====
+            const navLinks = document.querySelectorAll('.nav-link');
+            const tabs = {
+                home: document.getElementById('home'),
+                examples: document.getElementById('examples'),
+                reviews: document.getElementById('reviews'),
+                faq: document.getElementById('faq'),
+                contact: document.getElementById('contact')
+            };
+
+            function switchTab(tabId) {
+                Object.values(tabs).forEach(tab => tab.classList.remove('active'));
+                if (tabs[tabId]) tabs[tabId].classList.add('active');
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.dataset.tab === tabId) link.classList.add('active');
+                });
+                document.getElementById('navMenu').classList.remove('open');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const tabId = this.dataset.tab;
+                    if (tabId) switchTab(tabId);
+                });
+            });
+
+            document.querySelectorAll('[data-tab]').forEach(function(el) {
+                el.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const tabId = this.dataset.tab;
+                    if (tabId && tabs[tabId]) switchTab(tabId);
+                });
+            });
+
+            // ===== МОБИЛЬНОЕ МЕНЮ =====
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('navMenu');
+
+            hamburger.addEventListener('click', function() {
+                this.classList.toggle('open');
+                navMenu.classList.toggle('open');
+            });
+
+            document.querySelectorAll('.nav-link').forEach(function(link) {
+                link.addEventListener('click', function() {
+                    hamburger.classList.remove('open');
+                    navMenu.classList.remove('open');
+                });
+            });
+
+            // ===== FAQ =====
+            document.querySelectorAll('.faq-item').forEach(function(item) {
+                item.addEventListener('click', function() {
+                    document.querySelectorAll('.faq-item').forEach(function(other) {
+                        if (other !== item) other.classList.remove('open');
+                    });
+                    this.classList.toggle('open');
+                });
+            });
+
+            // ===== ЗВЁЗДЫ =====
+            const stars = document.querySelectorAll('#starRating span');
+            const starsInput = document.getElementById('reviewStars');
+
+            stars.forEach(function(star) {
+                star.addEventListener('click', function() {
+                    const value = parseInt(this.dataset.value);
+                    starsInput.value = value;
+                    stars.forEach(function(s) {
+                        const v = parseInt(s.dataset.value);
+                        if (v <= value) { s.classList.add('active');
+                            s.textContent = '★'; } else { s.classList.remove('active');
+                            s.textContent = '☆'; }
+                    });
+                });
+                star.addEventListener('mouseenter', function() {
+                    const value = parseInt(this.dataset.value);
+                    stars.forEach(function(s) {
+                        const v = parseInt(s.dataset.value);
+                        if (v <= value) { s.textContent = '★'; } else { s.textContent = '☆'; }
+                    });
+                });
+                star.addEventListener('mouseleave', function() {
+                    const current = parseInt(starsInput.value);
+                    stars.forEach(function(s) {
+                        const v = parseInt(s.dataset.value);
+                        if (v <= current) { s.textContent = '★';
+                            s.classList.add('active'); } else { s.textContent = '☆';
+                            s.classList.remove('active'); }
+                    });
+                });
+            });
+
+            // ===== КАПЧА =====
+            function generateCaptcha() {
+                const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+                let result = '';
+                for (let i = 0; i < 4; i++) result += chars.charAt(Math.floor(Math.random() * chars.length));
+                return result;
+            }
+
+            let currentCaptcha = generateCaptcha();
+            document.getElementById('captchaText').textContent = currentCaptcha;
+            document.getElementById('captchaRefresh').addEventListener('click', function() {
+                currentCaptcha = generateCaptcha();
+                document.getElementById('captchaText').textContent = currentCaptcha;
+                document.getElementById('captchaInput').value = '';
+            });
+
+            // ===== ОТПРАВКА ОТЗЫВА =====
+            document.getElementById('reviewForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const name = document.getElementById('reviewName').value.trim();
+                const stars = parseInt(document.getElementById('reviewStars').value);
+                const text = document.getElementById('reviewText').value.trim();
+                const captchaInput = document.getElementById('captchaInput').value.trim().toUpperCase();
+
+                if (!name || !text) { showToast('⚠️ Заполните все поля!', 'error'); return; }
+                if (captchaInput !== currentCaptcha) {
+                    showToast('⚠️ Неверный код!', 'error');
+                    document.getElementById('captchaInput').value = '';
+                    currentCaptcha = generateCaptcha();
+                    document.getElementById('captchaText').textContent = currentCaptcha;
+                    return;
+                }
+
+                const now = Date.now();
+                const recent = savedReviews.filter(r => r.name === name && (now - new Date(r.timestamp || 0)
+                    .getTime() < 300000));
+                if (recent.length >= 3) {
+                    showToast('⚠️ Слишком много отзывов за 5 минут!', 'error');
+                    return;
+                }
+
+                savedReviews.push({
+                    name,
+                    stars,
+                    text,
+                    date: new Date().toLocaleDateString('ru-RU', { day: 'numeric', month: 'long',
+                        year: 'numeric' }),
+                    timestamp: now
+                });
+                localStorage.setItem('reviews', JSON.stringify(savedReviews));
+                renderReviews();
+                if (isAdmin) renderAdminReviews();
+
+                this.reset();
+                starsInput.value = 5;
+                stars.forEach(function(s) { const v = parseInt(s.dataset.value); if (v <= 5) { s.classList.add(
+                        'active');
+                        s.textContent = '★'; } });
+                currentCaptcha = generateCaptcha();
+                document.getElementById('captchaText').textContent = currentCaptcha;
+
+                showToast('✅ Спасибо за отзыв!', 'success');
+            });
+
+            // ===== TOAST =====
+            const toast = document.getElementById('toast');
+            let toastTimeout = null;
+
+            function showToast(message, type) {
+                toast.textContent = message;
+                toast.className = 'toast show';
+                if (type === 'error') toast.classList.add('error');
+                else toast.classList.remove('error');
+                if (toastTimeout) clearTimeout(toastTimeout);
+                toastTimeout = setTimeout(function() { toast.classList.remove('show'); }, 5000);
+            }
+
+            // ===== ЗАПУСК =====
+            renderExamples();
+            renderReviews();
+
+            console.log('💻 ПрайсКод — полностью адаптивный сайт');
+            console.log('🔐 Админка: добавьте ?admin=true в URL');
+            console.log('🔑 Пароль: admin123');
+            console.log('📧 Почта: pricefixvaninl@gmail.com');
+            console.log('📩 Заявки отправляются на почту через Formspree');
+            console.log('🔒 Согласие на ПД: появляется при отправке заявки');
+
+            // Добавляем анимации для модалки ПД
+            const styleSheet = document.createElement('style');
+            styleSheet.textContent = `
+                @keyframes fadeIn {
+                    0% { opacity: 0; }
+                    100% { opacity: 1; }
+                }
+                @keyframes modalPop {
+                    0% { transform: scale(0.85) rotate(-2deg); opacity: 0; }
+                    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+                }
+            `;
+            document.head.appendChild(styleSheet);
+
+        });
+    </script>
+
+</body>
+</html>
