@@ -624,138 +624,135 @@
             font-weight: 700;
         }
 
-        /* ===== ОТЗЫВЫ ===== */
-        .reviews-list {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            max-height: 600px;
-            overflow-y: auto;
-            padding-right: 8px;
-        }
-
-        .reviews-list::-webkit-scrollbar {
-            width: 4px;
-        }
-
-        .reviews-list::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 10px;
-        }
-
-        .review-item {
-            background: var(--card-bg);
-            padding: clamp(14px, 2vw, 22px);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            border-left: 4px solid var(--primary);
+        /* ===== ОТЗЫВЫ (только кнопка-ссылка) ===== */
+        .reviews-button-block {
+            background: linear-gradient(135deg, #2b6cb0, #1a4f7a);
+            border-radius: 24px;
+            padding: clamp(40px, 6vw, 60px) clamp(20px, 4vw, 40px);
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 8px 32px rgba(43, 108, 176, 0.25);
             position: relative;
+            overflow: hidden;
         }
 
-        .review-item .stars {
-            color: var(--accent);
-            font-size: clamp(1rem, 1.5vw, 1.2rem);
-            letter-spacing: 2px;
-        }
-
-        .review-item .review-text {
-            margin: 4px 0 8px;
-            font-style: italic;
-            color: #2d3748;
-            font-size: clamp(0.9rem, 1.2vw, 0.95rem);
-        }
-
-        .review-item .review-author {
-            font-weight: 600;
-            font-size: clamp(0.85rem, 1.1vw, 0.9rem);
-            color: var(--primary);
-        }
-
-        .review-item .review-date {
-            font-size: clamp(0.65rem, 0.9vw, 0.75rem);
-            color: var(--text-light);
-        }
-
-        .review-item .review-delete {
+        .reviews-button-block::before {
+            content: '';
             position: absolute;
-            top: 12px;
-            right: 12px;
-            background: none;
-            border: none;
-            color: var(--text-light);
-            cursor: pointer;
-            font-size: 1rem;
-            padding: 4px 8px;
-            border-radius: 6px;
-            transition: var(--transition);
+            top: -50%;
+            right: -30%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
         }
 
-        .review-item .review-delete:hover {
-            color: var(--secondary);
-            background: #fff5f5;
-        }
-
-        .review-form {
-            background: var(--card-bg);
-            padding: clamp(16px, 3vw, 28px);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow);
-            margin-bottom: 24px;
-        }
-
-        .review-form h3 {
+        .reviews-button-block .icon-big {
+            font-size: clamp(3rem, 8vw, 5rem);
             margin-bottom: 12px;
-            font-size: clamp(1rem, 1.5vw, 1.2rem);
+            display: block;
+            position: relative;
+            z-index: 2;
         }
 
-        .review-form input,
-        .review-form textarea {
-            width: 100%;
-            padding: clamp(10px, 1.5vw, 14px) clamp(12px, 1.5vw, 16px);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            font-size: clamp(0.9rem, 1.2vw, 1rem);
-            font-family: inherit;
-            margin-bottom: 10px;
-            transition: var(--transition);
-            background: var(--bg);
+        .reviews-button-block h3 {
+            color: white;
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            font-weight: 700;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 2;
         }
 
-        .review-form input:focus,
-        .review-form textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.1);
+        .reviews-button-block p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+            margin-bottom: 24px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .reviews-button-block .btn-reviews {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
             background: white;
-        }
-
-        .review-form textarea {
-            resize: vertical;
-            min-height: 80px;
-        }
-
-        .review-form .star-rating {
-            display: flex;
-            gap: 6px;
-            margin-bottom: 10px;
-            font-size: clamp(1.6rem, 3vw, 2rem);
+            color: #2b6cb0;
+            padding: clamp(14px, 1.8vw, 18px) clamp(30px, 4vw, 48px);
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: clamp(1rem, 1.3vw, 1.1rem);
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+            border: none;
             cursor: pointer;
-            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
         }
 
-        .review-form .star-rating span {
-            color: #e2e8f0;
+        .reviews-button-block .btn-reviews:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+        }
+
+        .reviews-button-block .btn-reviews .arrow {
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+
+        .reviews-button-block .btn-reviews:hover .arrow {
+            transform: translateX(6px);
+        }
+
+        .reviews-button-block .hint {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: clamp(0.7rem, 0.9vw, 0.8rem);
+            margin-top: 16px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .reviews-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            max-width: 700px;
+            margin: 30px auto 0;
+            text-align: center;
+        }
+
+        .reviews-features .rf-item {
+            background: var(--card-bg);
+            padding: 16px 20px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
             transition: var(--transition);
-            user-select: none;
-            line-height: 1;
         }
 
-        .review-form .star-rating span.active {
-            color: var(--accent);
+        .reviews-features .rf-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
         }
 
-        .review-form .star-rating span:hover {
-            transform: scale(1.2);
+        .reviews-features .rf-item .rf-icon {
+            font-size: 1.8rem;
+        }
+
+        .reviews-features .rf-item .rf-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text);
+        }
+
+        .reviews-features .rf-item .rf-desc {
+            font-size: 0.8rem;
+            color: var(--text-light);
         }
 
         /* ===== КОНТАКТЫ ===== */
@@ -878,6 +875,7 @@
             transition: var(--transition);
             font-family: inherit;
             background: var(--bg);
+            width: 100%;
         }
 
         .contact-form input:focus,
@@ -904,6 +902,58 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 12px;
+        }
+
+        /* ===== СОГЛАСИЕ НА ПД (внутри формы) ===== */
+        .pd-consent-wrapper {
+            background: #f7fafc;
+            border-radius: var(--radius);
+            padding: 16px 20px;
+            border: 1px solid var(--border);
+            margin: 8px 0 4px;
+        }
+
+        .pd-consent-wrapper .pd-checkbox-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .pd-consent-wrapper .pd-checkbox-row input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-top: 2px;
+            flex-shrink: 0;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+        .pd-consent-wrapper .pd-checkbox-row label {
+            font-size: clamp(0.85rem, 1.1vw, 0.95rem);
+            color: var(--text-muted);
+            cursor: pointer;
+            line-height: 1.5;
+        }
+
+        .pd-consent-wrapper .pd-checkbox-row label a {
+            color: var(--primary);
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .pd-consent-wrapper .pd-checkbox-row label a:hover {
+            color: var(--primary-dark);
+        }
+
+        .pd-consent-wrapper .pd-error {
+            color: var(--secondary);
+            font-size: 0.85rem;
+            margin-top: 6px;
+            display: none;
+        }
+
+        .pd-consent-wrapper .pd-error.show {
+            display: block;
         }
 
         /* ===== FAQ ===== */
@@ -1136,6 +1186,7 @@
             text-align: center;
         }
 
+        /* ===== МОДАЛЬНОЕ ОКНО ДЛЯ ПРИМЕРОВ ===== */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -1256,51 +1307,6 @@
 
         .modal-content .modal-close:hover {
             background: #e2e8f0;
-        }
-
-        /* ===== СОГЛАСИЕ НА ПД (внутри формы) ===== */
-        .pd-consent-wrapper {
-            background: #f7fafc;
-            border-radius: var(--radius);
-            padding: 16px 20px;
-            border: 1px solid var(--border);
-            margin: 8px 0 4px;
-        }
-        .pd-consent-wrapper .pd-checkbox-row {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-        }
-        .pd-consent-wrapper .pd-checkbox-row input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
-            margin-top: 2px;
-            flex-shrink: 0;
-            accent-color: var(--primary);
-            cursor: pointer;
-        }
-        .pd-consent-wrapper .pd-checkbox-row label {
-            font-size: clamp(0.85rem, 1.1vw, 0.95rem);
-            color: var(--text-muted);
-            cursor: pointer;
-            line-height: 1.5;
-        }
-        .pd-consent-wrapper .pd-checkbox-row label a {
-            color: var(--primary);
-            text-decoration: underline;
-            cursor: pointer;
-        }
-        .pd-consent-wrapper .pd-checkbox-row label a:hover {
-            color: var(--primary-dark);
-        }
-        .pd-consent-wrapper .pd-error {
-            color: var(--secondary);
-            font-size: 0.85rem;
-            margin-top: 6px;
-            display: none;
-        }
-        .pd-consent-wrapper .pd-error.show {
-            display: block;
         }
 
         /* ===== TOAST ===== */
@@ -1450,6 +1456,9 @@
             .pd-consent-wrapper .pd-checkbox-row {
                 flex-wrap: wrap;
             }
+            .reviews-features {
+                grid-template-columns: 1fr 1fr;
+            }
         }
 
         @media (max-width: 420px) {
@@ -1471,9 +1480,6 @@
             .section-title {
                 font-size: 1.4rem;
             }
-            .review-form {
-                padding: 16px;
-            }
             .contact-info {
                 padding: 16px;
             }
@@ -1493,6 +1499,9 @@
             }
             .logo {
                 font-size: 1.3rem;
+            }
+            .reviews-features {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -1620,13 +1629,9 @@
 
             <div class="examples-grid" id="examplesGrid"></div>
 
-            <!-- СКРЫТАЯ АДМИН-ПАНЕЛЬ -->
+            <!-- СКРЫТАЯ АДМИН-ПАНЕЛЬ (только для управления примерами) -->
             <div class="admin-panel" id="adminPanel">
                 <h3>🛠️ Управление контентом</h3>
-
-                <h4>📝 Управление отзывами</h4>
-                <div id="adminReviewsStorageBox" style="margin-bottom:12px;"></div>
-                <div id="adminReviewsList"></div>
 
                 <h4>➕ Добавить пример</h4>
                 <form class="admin-form" id="adminExampleForm">
@@ -1648,28 +1653,40 @@
             </div>
         </section>
 
-        <!-- ===== ОТЗЫВЫ ===== -->
+        <!-- ===== ОТЗЫВЫ (ТОЛЬКО КНОПКА-ССЫЛКА) ===== -->
         <section id="reviews" class="tab-content">
             <h2 class="section-title">Реальные <span>отзывы</span></h2>
-            <p class="section-subtitle">Оставь свой отзыв или посмотри, что говорят другие</p>
+            <p class="section-subtitle">Честные мнения наших клиентов о работе с ПрайсКод</p>
 
-            <div class="review-form" id="reviewForm">
-                <h3>📝 Написать отзыв</h3>
-                <input type="text" placeholder="Ваше имя" id="reviewName" required />
-                <div class="star-rating" id="starRating">
-                    <span data-value="1">☆</span>
-                    <span data-value="2">☆</span>
-                    <span data-value="3">☆</span>
-                    <span data-value="4">☆</span>
-                    <span data-value="5">☆</span>
-                </div>
-                <input type="hidden" id="reviewStars" value="5" />
-                <textarea placeholder="Расскажите о вашем опыте..." id="reviewText" required></textarea>
-                <button type="submit" class="btn btn-primary" style="width:100%;" id="reviewSubmit">Оставить отзыв</button>
+            <div class="reviews-button-block">
+                <span class="icon-big">⭐</span>
+                <h3>Перейти к отзывам</h3>
+                <p>Посмотрите, что говорят наши клиенты о качестве работы, сроках и подходе.</p>
+                <a href="https://yaroslavisaev101-lab.github.io/price-code-r/" target="_blank" class="btn-reviews">
+                    <span>📖</span>
+                    Читать отзывы
+                    <span class="arrow">→</span>
+                </a>
+                <div class="hint">Откроется в новой вкладке</div>
             </div>
 
-            <div id="reviewsStatus" style="text-align:center;color:var(--text-light);padding:12px;"></div>
-            <div class="reviews-list" id="reviewsList"></div>
+            <div class="reviews-features">
+                <div class="rf-item">
+                    <div class="rf-icon">💬</div>
+                    <div class="rf-title">Реальные отзывы</div>
+                    <div class="rf-desc">Только честные мнения</div>
+                </div>
+                <div class="rf-item">
+                    <div class="rf-icon"></div>
+                    <div class="rf-title"></div>
+                    <div class="rf-desc">Средняя оценка клиентов</div>
+                </div>
+                <div class="rf-item">
+                    <div class="rf-icon">📝</div>
+                    <div class="rf-title">Оставьте свой</div>
+                    <div class="rf-desc">Ваше мнение важно</div>
+                </div>
+            </div>
         </section>
 
         <!-- ===== FAQ ===== -->
@@ -1745,7 +1762,7 @@
                     </div>
                     <p class="contact-hint">📌 Укажите Email или Телефон — на что удобнее получить ответ</p>
                     <textarea rows="4" placeholder="Опишите задачу..." id="formMessage" required></textarea>
-                    
+
                     <!-- ===== СОГЛАСИЕ НА ПД (ВНУТРИ ФОРМЫ) ===== -->
                     <div class="pd-consent-wrapper">
                         <div class="pd-checkbox-row">
@@ -1914,7 +1931,7 @@
 
                 const FORMGRID_URL = 'https://formgrid.dev/api/f/8x6nx9bd';
 
-                // Формируем текст для файла (без упоминания моей почты)
+                // Формируем текст для файла
                 const consentText = `
         ═══════════════════════════════════════════════════
            СОГЛАСИЕ НА ОБРАБОТКУ ПЕРСОНАЛЬНЫХ ДАННЫХ
@@ -1946,14 +1963,12 @@
                 submitBtn.textContent = '⏳ Отправка...';
 
                 try {
-                    // FormGrid принимает данные как FormData (как в официальной документации)
                     const formData = new FormData();
                     formData.append('name', name);
                     if (email) formData.append('email', email);
                     formData.append('phone', phone || 'Не указан');
                     formData.append('message', message + '\n\n--- СОГЛАСИЕ НА ПД ---\n' + consentText);
 
-                    // Отправляем заявку на почту (с текстом согласия)
                     const response = await fetch(FORMGRID_URL, {
                         method: 'POST',
                         headers: {
@@ -1963,20 +1978,19 @@
                     });
 
                     if (response.ok) {
-                        // Скачиваем файл у пользователя (без моей почты)
                         downloadConsentFile(consentText);
                         showToast('✅ Заявка отправлена! Файл с согласием скачан.', 'success');
                         this.reset();
                         pdCheckbox.checked = false;
                     } else {
                         showToast(
-                            '❌ Ошибка отправки. Напишите мне напрямую: pricefixvaninl@gmail.com или +7 909 864 91 40',
+                            '❌ Ошибка отправки. Попробуйте включить VPN и повторить отправку, либо напишите мне напрямую: pricefixvaninl@gmail.com или +7 909 864 91 40',
                             'error'
                         );
                     }
                 } catch (error) {
                     showToast(
-                        '⚠️ Нет связи с сервером. Напишите мне: pricefixvaninl@gmail.com или +7 909 864 91 40',
+                        '⚠️ Нет связи с сервером. Попробуйте включить VPN и отправить заявку ещё раз, либо напишите мне: pricefixvaninl@gmail.com или +7 909 864 91 40',
                         'error'
                     );
                 }
@@ -1999,7 +2013,7 @@
             }
 
             // ==========================================================
-            // 3. ОСТАЛЬНАЯ ЛОГИКА
+            // 3. АДМИН-ПАНЕЛЬ (только для управления примерами)
             // ==========================================================
             const ADMIN_PASSWORD = 'admin123';
 
@@ -2024,7 +2038,6 @@
                     adminLoginModal.classList.remove('active');
                     adminPanel.classList.add('active');
                     renderAdminExamples();
-                    renderAdminReviews();
                     showToast('✅ Вход в админ-панель выполнен', 'success');
                 } else {
                     loginError.classList.add('show');
@@ -2039,7 +2052,9 @@
                 if (e.key === 'Enter') adminLoginSubmit.click();
             });
 
-            // ===== ПРИМЕРЫ =====
+            // ==========================================================
+            // 4. ПРИМЕРЫ РАБОТ
+            // ==========================================================
             const defaultExamples = [{
                 id: 'ex1',
                 name: '💐 Поздравление / Признание',
@@ -2128,7 +2143,9 @@
                 });
             }
 
-            // ===== МОДАЛЬНОЕ ОКНО =====
+            // ==========================================================
+            // 5. МОДАЛЬНОЕ ОКНО ДЛЯ ПРИМЕРОВ
+            // ==========================================================
             const modalOverlay = document.getElementById('modalOverlay');
             const modalTitle = document.getElementById('modalTitle');
             const modalSub = document.getElementById('modalSub');
@@ -2166,6 +2183,9 @@
             modalOverlay.addEventListener('click', function(e) { if (e.target === modalOverlay) closeModal(); });
             document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
 
+            // ==========================================================
+            // 6. АДМИН: УПРАВЛЕНИЕ ПРИМЕРАМИ
+            // ==========================================================
             function renderAdminExamples() {
                 const container = document.getElementById('adminExamplesContainer');
                 container.innerHTML = '';
@@ -2231,7 +2251,9 @@
                 showToast('✅ Пример добавлен!', 'success');
             });
 
-            // ===== ВКЛАДКИ =====
+            // ==========================================================
+            // 7. ВКЛАДКИ
+            // ==========================================================
             const navLinks = document.querySelectorAll('.nav-link');
             const tabs = {
                 home: document.getElementById('home'),
@@ -2268,7 +2290,9 @@
                 });
             });
 
-            // ===== МОБИЛЬНОЕ МЕНЮ =====
+            // ==========================================================
+            // 8. МОБИЛЬНОЕ МЕНЮ
+            // ==========================================================
             const hamburger = document.getElementById('hamburger');
             const navMenu = document.getElementById('navMenu');
 
@@ -2284,7 +2308,9 @@
                 });
             });
 
-            // ===== FAQ =====
+            // ==========================================================
+            // 9. FAQ
+            // ==========================================================
             document.querySelectorAll('.faq-item').forEach(function(item) {
                 item.addEventListener('click', function() {
                     document.querySelectorAll('.faq-item').forEach(function(other) {
@@ -2294,309 +2320,9 @@
                 });
             });
 
-            // ===== ОТЗЫВЫ =====
-            // Сайт статический (GitHub Pages), поэтому для того, чтобы отзывы
-            // видели ВСЕ посетители (а не только автор в своём браузере),
-            // используется бесплатное публичное JSON-хранилище jsonblob.com.
-            //
-            // ⚙️ Как включить общие отзывы (один раз):
-            // 1) Откройте админку (?admin=true, пароль admin123) → раздел «Управление отзывами»
-            // 2) Нажмите «Создать хранилище отзывов автоматически»
-            //    Если браузер не даст автоматически определить ID (ограничение CORS),
-            //    в панели появится инструкция, как создать хранилище вручную за 30 секунд
-            //    на https://jsonblob.com и получить ID
-            // 3) Полученный ID впишите ниже вместо null — это сделает отзывы видимыми
-            //    для всех посетителей сайта постоянно.
-            const REVIEWS_BLOB_ID = null; // <-- сюда вписать ID после инициализации хранилища
-
-            const REVIEWS_API_BASE = 'https://jsonblob.com/api/jsonBlob';
-            let currentReviewsBlobId = REVIEWS_BLOB_ID || localStorage.getItem('reviewsBlobId') || null;
-            let reviewsCache = [];
-
-            function escapeHtml(str) {
-                const div = document.createElement('div');
-                div.textContent = str == null ? '' : String(str);
-                return div.innerHTML;
-            }
-
-            function getReviewsUrl() {
-                return currentReviewsBlobId ? `${REVIEWS_API_BASE}/${currentReviewsBlobId}` : null;
-            }
-
-            async function fetchReviews() {
-                const statusEl = document.getElementById('reviewsStatus');
-                if (!currentReviewsBlobId) {
-                    reviewsCache = [];
-                    if (statusEl) statusEl.textContent = '';
-                    renderReviews();
-                    return;
-                }
-                if (statusEl) statusEl.textContent = 'Загружаем отзывы...';
-                try {
-                    const res = await fetch(getReviewsUrl(), { headers: { 'Accept': 'application/json' } });
-                    if (res.ok) {
-                        const data = await res.json();
-                        reviewsCache = Array.isArray(data) ? data : [];
-                    } else {
-                        reviewsCache = [];
-                    }
-                } catch (err) {
-                    console.warn('Не удалось загрузить отзывы:', err);
-                    reviewsCache = [];
-                }
-                if (statusEl) statusEl.textContent = '';
-                renderReviews();
-                if (isAdmin) renderAdminReviews();
-            }
-
-            async function persistReviews() {
-                if (!currentReviewsBlobId) return false;
-                try {
-                    const res = await fetch(getReviewsUrl(), {
-                        method: 'PUT',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Accept': 'application/json'
-                        },
-                        body: JSON.stringify(reviewsCache)
-                    });
-                    return res.ok;
-                } catch (err) {
-                    console.warn('Не удалось сохранить отзывы:', err);
-                    return false;
-                }
-            }
-
-            function renderReviews() {
-                const list = document.getElementById('reviewsList');
-                const statusEl = document.getElementById('reviewsStatus');
-                if (!list) return;
-                list.innerHTML = '';
-
-                if (!currentReviewsBlobId) {
-                    if (statusEl) statusEl.textContent = 'Отзывы скоро появятся 🙂';
-                    return;
-                }
-
-                if (reviewsCache.length === 0) {
-                    list.innerHTML =
-                        '<div style="text-align:center;color:#a0aec0;padding:20px;">Пока нет отзывов. Будь первым! ✨</div>';
-                    return;
-                }
-
-                reviewsCache.slice().reverse().forEach(function(review) {
-                    const div = document.createElement('div');
-                    div.className = 'review-item';
-                    const starsHtml = '★'.repeat(review.stars) + '☆'.repeat(5 - review.stars);
-                    div.innerHTML = `
-                        <div class="stars">${starsHtml}</div>
-                        <div class="review-text">"${escapeHtml(review.text)}"</div>
-                        <div class="review-author">${escapeHtml(review.name)}</div>
-                        <div class="review-date">${escapeHtml(review.date)}</div>
-                    `;
-                    list.appendChild(div);
-                });
-            }
-
-            function renderAdminReviews() {
-                const container = document.getElementById('adminReviewsList');
-                const storageBox = document.getElementById('adminReviewsStorageBox');
-                if (!container || !storageBox) return;
-
-                if (!currentReviewsBlobId) {
-                    storageBox.innerHTML = `
-                        <div style="background:#fffaf0;border:1px solid #fbd38d;border-radius:10px;padding:12px;font-size:0.85rem;color:#7b341e;line-height:1.6;">
-                            ⚠️ Общее хранилище отзывов ещё не подключено — отзывы пока сохраняются только у автора в браузере.<br>
-                            <button class="btn btn-primary btn-sm" id="initReviewsStorageBtn" style="margin-top:8px;">🔧 Создать хранилище отзывов автоматически</button>
-                            <div id="initReviewsManual" style="margin-top:10px;display:none;"></div>
-                        </div>
-                    `;
-                    document.getElementById('initReviewsStorageBtn').addEventListener('click', initReviewsStorage);
-                    container.innerHTML = '';
-                    return;
-                }
-
-                storageBox.innerHTML = `
-                    <div style="background:#f0fff4;border:1px solid #9ae6b4;border-radius:10px;padding:10px 12px;font-size:0.8rem;color:#276749;word-break:break-all;">
-                        ✅ Общее хранилище подключено. ID: <strong>${escapeHtml(currentReviewsBlobId)}</strong><br>
-                        <span style="font-weight:400;">Чтобы отзывы были видны всем посетителям навсегда, впишите этот ID в код сайта в строку <code>REVIEWS_BLOB_ID</code>.</span>
-                    </div>
-                `;
-
-                container.innerHTML = '';
-                if (reviewsCache.length === 0) {
-                    container.innerHTML = '<div style="color:#a0aec0;padding:8px;">Нет отзывов</div>';
-                    return;
-                }
-                reviewsCache.slice().reverse().forEach(function(review) {
-                    const div = document.createElement('div');
-                    div.style.cssText =
-                        'display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:#f7fafc;border-radius:8px;margin-bottom:6px;font-size:clamp(0.8rem,1vw,0.9rem);flex-wrap:wrap;gap:8px;';
-                    const shortText = review.text.length > 60 ? review.text.substring(0, 60) + '...' : review.text;
-                    div.innerHTML = `
-                        <span style="flex:1;min-width:120px;"><strong>${escapeHtml(review.name)}</strong>: ${escapeHtml(shortText)}</span>
-                        <button class="btn btn-danger btn-sm" data-review-id="${escapeHtml(review.id)}">🗑️</button>
-                    `;
-                    container.appendChild(div);
-                });
-
-                container.querySelectorAll('[data-review-id]').forEach(function(btn) {
-                    btn.addEventListener('click', async function() {
-                        const id = this.dataset.reviewId;
-                        if (!confirm('Удалить этот отзыв?')) return;
-                        this.disabled = true;
-                        const backup = reviewsCache.slice();
-                        reviewsCache = reviewsCache.filter(r => r.id !== id);
-                        const ok = await persistReviews();
-                        if (ok) {
-                            showToast('✅ Отзыв удалён', 'success');
-                        } else {
-                            reviewsCache = backup;
-                            showToast('⚠️ Не удалось удалить отзыв. Проверьте связь и попробуйте ещё раз.', 'error');
-                        }
-                        renderReviews();
-                        renderAdminReviews();
-                    });
-                });
-            }
-
-            async function initReviewsStorage() {
-                const btn = document.getElementById('initReviewsStorageBtn');
-                const manualBox = document.getElementById('initReviewsManual');
-                if (btn) { btn.disabled = true; btn.textContent = '⏳ Создание...'; }
-                try {
-                    const res = await fetch(REVIEWS_API_BASE, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Accept': 'application/json'
-                        },
-                        body: JSON.stringify([])
-                    });
-                    const location = res.headers.get('Location') || '';
-                    const id = location.split('/').filter(Boolean).pop();
-
-                    if (res.ok && id) {
-                        currentReviewsBlobId = id;
-                        localStorage.setItem('reviewsBlobId', id);
-                        reviewsCache = [];
-                        showToast('✅ Хранилище создано! Скопируйте ID и впишите его в код.', 'success');
-                        renderAdminReviews();
-                        renderReviews();
-                        return;
-                    }
-                    throw new Error('ID не определён автоматически');
-                } catch (err) {
-                    // Браузер не даёт прочитать ID автоматически (ограничение CORS) —
-                    // показываем понятную инструкцию для ручного создания за 30 секунд
-                    if (manualBox) {
-                        manualBox.style.display = 'block';
-                        manualBox.innerHTML = `
-                            <div style="font-size:0.8rem;line-height:1.7;">
-                                Автоматически определить ID не удалось (браузер блокирует чтение адреса созданного файла). Сделайте это вручную — займёт 30 секунд:<br>
-                                1. Откройте <a href="https://jsonblob.com" target="_blank" style="color:var(--primary);text-decoration:underline;">jsonblob.com</a><br>
-                                2. Нажмите «+ New», вставьте в поле <code>[]</code> и нажмите «Save»<br>
-                                3. Скопируйте ID из адресной строки (часть после последнего /)<br>
-                                4. Пришлите этот ID мне в чат — я сразу впишу его в код сайта.<br>
-                                Либо впишите его сами вместо <code>null</code> в строке <code>REVIEWS_BLOB_ID</code> в файле сайта.
-                            </div>
-                        `;
-                    }
-                    showToast('⚠️ Автоматическое создание не удалось, см. инструкцию ниже', 'error');
-                }
-                if (btn) { btn.disabled = false; btn.textContent = '🔧 Создать хранилище отзывов автоматически'; }
-            }
-
-            // ===== ЗВЁЗДЫ =====
-            const stars = document.querySelectorAll('#starRating span');
-            const starsInput = document.getElementById('reviewStars');
-
-            stars.forEach(function(star) {
-                star.addEventListener('click', function() {
-                    const value = parseInt(this.dataset.value);
-                    starsInput.value = value;
-                    stars.forEach(function(s) {
-                        const v = parseInt(s.dataset.value);
-                        if (v <= value) { s.classList.add('active');
-                            s.textContent = '★'; } else { s.classList.remove('active');
-                            s.textContent = '☆'; }
-                    });
-                });
-                star.addEventListener('mouseenter', function() {
-                    const value = parseInt(this.dataset.value);
-                    stars.forEach(function(s) {
-                        const v = parseInt(s.dataset.value);
-                        if (v <= value) { s.textContent = '★'; } else { s.textContent = '☆'; }
-                    });
-                });
-                star.addEventListener('mouseleave', function() {
-                    const current = parseInt(starsInput.value);
-                    stars.forEach(function(s) {
-                        const v = parseInt(s.dataset.value);
-                        if (v <= current) { s.textContent = '★';
-                            s.classList.add('active'); } else { s.textContent = '☆';
-                            s.classList.remove('active'); }
-                    });
-                });
-            });
-
-            // ===== ОТПРАВКА ОТЗЫВА =====
-            const reviewSubmitBtn = document.getElementById('reviewSubmit');
-
-            document.getElementById('reviewForm').addEventListener('submit', async function(e) {
-                e.preventDefault();
-
-                const name = document.getElementById('reviewName').value.trim();
-                const starsValue = parseInt(document.getElementById('reviewStars').value);
-                const text = document.getElementById('reviewText').value.trim();
-
-                if (!name || !text) { showToast('⚠️ Заполните все поля!', 'error'); return; }
-
-                if (!currentReviewsBlobId) {
-                    showToast('⚠️ Форма отзывов ещё настраивается, попробуйте чуть позже', 'error');
-                    return;
-                }
-
-                const now = Date.now();
-                const recent = reviewsCache.filter(r => r.name === name && (now - (r.timestamp || 0) < 300000));
-                if (recent.length >= 3) {
-                    showToast('⚠️ Слишком много отзывов за 5 минут!', 'error');
-                    return;
-                }
-
-                reviewSubmitBtn.disabled = true;
-                reviewSubmitBtn.textContent = '⏳ Отправка...';
-
-                const newReview = {
-                    id: 'r' + now + Math.random().toString(36).slice(2, 8),
-                    name,
-                    stars: starsValue,
-                    text,
-                    date: new Date().toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' }),
-                    timestamp: now
-                };
-
-                const backup = reviewsCache.slice();
-                reviewsCache.push(newReview);
-                const ok = await persistReviews();
-
-                if (ok) {
-                    renderReviews();
-                    if (isAdmin) renderAdminReviews();
-                    this.reset();
-                    starsInput.value = 5;
-                    stars.forEach(function(s) { const v = parseInt(s.dataset.value); if (v <= 5) { s.classList.add('active'); s.textContent = '★'; } });
-                    showToast('✅ Спасибо за отзыв!', 'success');
-                } else {
-                    reviewsCache = backup;
-                    showToast('⚠️ Не удалось отправить отзыв. Проверьте связь и попробуйте снова.', 'error');
-                }
-
-                reviewSubmitBtn.disabled = false;
-                reviewSubmitBtn.textContent = 'Оставить отзыв';
-            });
-
-            // ===== TOAST =====
+            // ==========================================================
+            // 10. TOAST
+            // ==========================================================
             const toast = document.getElementById('toast');
             let toastTimeout = null;
 
@@ -2609,16 +2335,17 @@
                 toastTimeout = setTimeout(function() { toast.classList.remove('show'); }, 5000);
             }
 
-            // ===== ЗАПУСК =====
+            // ==========================================================
+            // 11. ЗАПУСК
+            // ==========================================================
             renderExamples();
-            fetchReviews();
 
             console.log('💻 ПрайсКод — полностью адаптивный сайт');
             console.log('🔐 Админка: добавьте ?admin=true в URL');
             console.log('🔑 Пароль: admin123');
             console.log('📧 Почта: pricefixvaninl@gmail.com');
             console.log('📩 Заявки отправляются на почту через FormGrid');
-            console.log('⭐ Отзывы: собственная форма + общее хранилище (jsonblob.com)');
+            console.log('⭐ Отзывы: отдельный сайт https://yaroslavisaev101-lab.github.io/price-code-r/');
             console.log('🔒 Согласие на ПД: появляется при отправке заявки');
 
             // Добавляем анимации для модалки ПД
